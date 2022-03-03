@@ -1,0 +1,13 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI/Style.uss?fileID=7433441132597879392&amp;guid=97dd8d2489ed3064fb0173b154d58649&amp;type=3#Style" />
+    <ui:VisualElement style="height: 100%; width: 100%; align-items: stretch; flex-direction: row; padding-left: 5%; padding-right: 5%; padding-top: 5%; padding-bottom: 5%;">
+        <ui:GroupBox style="justify-content: center; align-items: flex-start; flex-basis: 50%; width: 50%; height: 50%;">
+            <ui:IMGUIContainer style="background-color: rgba(255, 255, 255, 0); background-image: url(&apos;project://database/Assets/Sprites/impact.png?fileID=21300000&amp;guid=43b7df82c446a8545b333e0ccc74eb62&amp;type=3#impact&apos;); height: 38px; width: 232px; -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255);" />
+            <ui:IMGUIContainer style="background-color: rgba(255, 255, 255, 0); background-image: url(&apos;project://database/Assets/Sprites/therise.png?fileID=21300000&amp;guid=abda60e16af98be4e9d060c37b7e7a7c&amp;type=3#therise&apos;); height: 81px; width: 738px; -unity-background-scale-mode: scale-to-fit; -unity-background-image-tint-color: rgb(255, 255, 255);" />
+            <ui:IMGUIContainer style="background-image: url(&apos;project://database/Assets/Sprites/phoenix.png?fileID=21300000&amp;guid=12d0bc60c346a934da0dc2765b916461&amp;type=3#phoenix&apos;); height: 326px; width: 327px;" />
+        </ui:GroupBox>
+        <ui:GroupBox style="flex-basis: 50%; flex-direction: row; align-items: center; width: 50%; height: 50%; justify-content: flex-end; rotate: 0;">
+            <ui:Button text="START GAME" display-tooltip-when-elided="true" name="button_Play" style="height: 107px; width: 626px; margin-left: 0; margin-right: 0; margin-top: 0; margin-bottom: 0; padding-left: 0; padding-right: 0; padding-top: 0; padding-bottom: 0; font-size: 36px; -unity-font: url(&apos;project://database/Assets/Fonts/ChakraPetch-Regular.ttf?fileID=12800000&amp;guid=129bdf62c84cbaa41be9cc399870ae2c&amp;type=3#ChakraPetch-Regular&apos;); -unity-font-definition: url(&apos;project://database/Assets/Fonts/ChakraPetch-Regular%20SDF%201.asset?fileID=11400000&amp;guid=55b0ace388acc2e4aabf2b4d71fcd75c&amp;type=2#ChakraPetch-Regular SDF 1&apos;); background-color: rgba(88, 88, 88, 0); border-left-color: rgba(255, 255, 255, 0); border-right-color: rgba(255, 255, 255, 0); border-top-color: rgba(255, 255, 255, 0); border-bottom-color: rgba(255, 255, 255, 0);" />
+        </ui:GroupBox>
+    </ui:VisualElement>
+</ui:UXML>

@@ -1,0 +1,5 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" editor-extension-mode="False">
+    <ui:VisualElement style="padding-left: 2%; padding-right: 2%; padding-top: 2%; padding-bottom: 2%;">
+        <ui:Label text="00420" display-tooltip-when-elided="true" style="-unity-font: url(&apos;project://database/Assets/Fonts/ChakraPetch-Regular.ttf?fileID=12800000&amp;guid=129bdf62c84cbaa41be9cc399870ae2c&amp;type=3#ChakraPetch-Regular&apos;); -unity-font-definition: url(&apos;project://database/Assets/Fonts/ChakraPetch-Regular%20SDF%201.asset?fileID=11400000&amp;guid=55b0ace388acc2e4aabf2b4d71fcd75c&amp;type=2#ChakraPetch-Regular SDF 1&apos;); font-size: 42px; color: rgba(255, 255, 255, 255);" />
+    </ui:VisualElement>
+</ui:UXML>
