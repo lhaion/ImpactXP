@@ -24,12 +24,12 @@ public class PlayerShooting : MonoBehaviour
         if (Physics.Raycast(shotOrigin.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
         {
             Debug.DrawRay(shotOrigin.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
-            Debug.Log(hit.collider);
+            //Debug.Log(hit.collider);
         }
         else
         {
             Debug.DrawRay(shotOrigin.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
-            Debug.Log("Did not Hit");
+         //   Debug.Log("Did not Hit");
         }
     }
     void Shoot()
