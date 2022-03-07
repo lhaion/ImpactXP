@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
+// NETHEREUM(github) libs, files locates at ./assets/plugins
 using Nethereum.ABI.FunctionEncoding.Attributes;
 using Nethereum.ABI.Model;
 using Nethereum.Contracts;
@@ -18,21 +20,18 @@ using Nethereum.Web3.Accounts;
 public class netScript : MonoBehaviour
 {
     
-    public string Url = "https://ropsten.infura.io/v3/f51fc6313a05426899183b87a05ff580";
-    public string PrivateKey = "b63b5c772a9c2964f53ca3bbd23a73c847c6b7c420b1fce240a5326b428fee15"; //
-
-    public string AddressTo = "0xd664472253a8BdD9a110921646B7062108b6efFc";
-    public decimal Amount = 0;
+    public string Url = "https://ropsten.infura.io/v3/f51fc6313a05426899183b87a05ff580"; //testnet remote node ropsten
+    public string PrivateKey = ""; //signkeys
+    public string AddressTo = ""; //receiver
+    public decimal Amount = 0; 
     public decimal GasPriceGwei = 0;
     public string TransactionHash = "";
     public decimal BalanceAddressTo = 0m;
     public string ResultBalanceAddressTo;
     public string ResultTxnHash;
-    
-    // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("asd");
+        Debug.Log("ETH script start");
     }
     
 public void TransferRequest()
@@ -40,18 +39,17 @@ public void TransferRequest()
         StartCoroutine(TransferEther());
     }
 
-
-    //Sample of new features / requests
     public IEnumerator TransferEther()
     {
         
-        //initialising the transaction request sender
         var ethTransfer = new EthTransferUnityRequest(Url, PrivateKey, 444444444500);
 
         var receivingAddress = AddressTo;
 
         var feeStrategy = FeeStrategy.MedianFeeHistory;
+        
         Debug.Log(feeStrategy == FeeStrategy.TimePreference);
+        
         if (feeStrategy == FeeStrategy.TimePreference)
         {
             Debug.Log("Time Preference");
@@ -65,8 +63,8 @@ public void TransferRequest()
                 yield break;
             }
 
-            //lets get the first one so it is higher priority
             Debug.Log(timePreferenceFeeSuggestion.Result.Length);
+            
             if (timePreferenceFeeSuggestion.Result.Length > 0)
             {
                 Debug.Log(timePreferenceFeeSuggestion.Result[0].MaxFeePerGas);
@@ -95,10 +93,7 @@ public void TransferRequest()
                 Debug.Log(medianPriorityFeeStrategy.Exception.Message);
                 yield break;
             }
-            
-            Debug.Log(medianPriorityFeeStrategy.Result.MaxFeePerGas);
-            Debug.Log(medianPriorityFeeStrategy.Result.MaxPriorityFeePerGas);
-            
+
             var fee = medianPriorityFeeStrategy.Result;
 
             yield return ethTransfer.TransferEther(receivingAddress, Amount, fee.MaxPriorityFeePerGas.Value, fee.MaxFeePerGas.Value);
@@ -112,7 +107,7 @@ public void TransferRequest()
         if (feeStrategy == FeeStrategy.Legacy)
         {
             Debug.Log("Legacy mode");
-            //I am forcing the legacy mode but also I am including the gas price
+            
             ethTransfer.UseLegacyAsDefault = true;
 
             yield return ethTransfer.TransferEther(receivingAddress, Amount, GasPriceGwei);
@@ -124,14 +119,15 @@ public void TransferRequest()
             }
 
         }
-
+        
         TransactionHash = ethTransfer.Result;
+        
         ResultTxnHash = TransactionHash;
+        
         Debug.Log("Transfer transaction hash:" + TransactionHash);
-
-        //create a poll to get the receipt when mined
+        
         var transactionReceiptPolling = new TransactionReceiptPollingRequest(Url);
-        //checking every 2 seconds for the receipt
+        
         yield return transactionReceiptPolling.PollForReceipt(TransactionHash, 2);
         
         Debug.Log("Transaction mined");
@@ -151,7 +147,11 @@ public void TransferRequest()
         TimePreference,
         MedianFeeHistory
     }
-
-    // Update is called once per frame
+    
+    
+    
+    
+    
+    // any questions lrovaris#4065
 
 }
