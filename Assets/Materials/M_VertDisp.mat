@@ -47,14 +47,14 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amount: 0.448
-    - _ExpansionFrequency: 1
-    - _Frequency: 0.0373
-    - _GlowAmount: 0.19
+    - _Amount: 0.91
+    - _ExpansionFrequency: 4.44
+    - _Frequency: 0.01
+    - _GlowAmount: -0.53
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Seed: 63217
     m_Colors:
-    - _Color: {r: 0.5035353, g: 2.5303583, b: 0.03580689, a: 0.65882355}
+    - _Color: {r: 2.9957862, g: 0.56286377, b: 0.15544175, a: 0.65882355}
     - _GlowColor: {r: 2.2934484, g: 6.498104, b: 0.17837933, a: 1}
   m_BuildTextureStacks: []
