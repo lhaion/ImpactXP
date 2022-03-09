@@ -9,7 +9,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     public GameState State;
     public Difficulty Difficulty;
-    private float score;
+    [SerializeField] private float score;
+    [SerializeField] private float pot;
 
     public static event Action<GameState> OnGameStateChange;
     // Start is called before the first frame update
@@ -21,7 +22,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UpdateGameState(GameState.Intro);
-        
+        GameEvents.instance.onBonusEnd += AddPot;
     }
 
     // Update is called once per frame
@@ -31,9 +32,21 @@ public class GameManager : MonoBehaviour
         GameEvents.instance.UpdateScore();
     }
 
+    public void AddPot()
+    {
+        pot += score;
+        score = 0;
+        GameEvents.instance.UpdatePot();
+    }
+
     public float GetScore()
     {
         return score;
+    }
+
+    public float GetPot()
+    {
+        return pot;
     }
 
     public void UpdateGameState(GameState newState)
@@ -48,8 +61,11 @@ public class GameManager : MonoBehaviour
             case GameState.Playing:
                 HandlePlaying();
                 break;
-            case GameState.Pause:
-                HandlePause();
+            case GameState.BonusRound:
+                HandleBonusRound();
+                break;
+            case GameState.BossFight:
+                HandleBossFight();
                 break;
             case GameState.GameOver:
                 HandleGameOver();
@@ -72,6 +88,18 @@ public class GameManager : MonoBehaviour
     {
         //Debug.Log("Playing");
         GameEvents.instance.MatchStart();
+    }
+
+    private void HandleBonusRound()
+    {
+        //Debug.Log("Playing");
+        GameEvents.instance.BonusStart();
+    }
+
+    private void HandleBossFight()
+    {
+        Debug.Log("Here Comes the BOSS!");
+        GameEvents.instance.BossFightStart();
     }
 
     private void HandlePause()
@@ -105,7 +133,8 @@ public enum GameState
 {
     Intro,
     Playing,
-    Pause,
+    BonusRound,
+    BossFight,
     GameOver
 }
 
@@ -116,7 +145,5 @@ public enum Difficulty
     level3,
     level4,
     level5,
-    level6,
-    level7,
-    level8
+    bossFight
 }

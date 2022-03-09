@@ -34,7 +34,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amount: 0.749
+    - _Amount: 0.616
     - _ExpansionFrequency: 3.46
     - _Frequency: 0.1
     - _GlowAmount: 8.25

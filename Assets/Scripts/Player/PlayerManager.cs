@@ -18,9 +18,15 @@ public class PlayerManager : MonoBehaviour
 
         if(life <= 0)
         {
-            GameManager.instance.UpdateGameState(GameState.GameOver);
+            
             this.gameObject.SetActive(false);
         }
+    }
+
+    private void OnDisable()
+    {
+        GameEvents.instance.MatchEnd();
+        GameManager.instance.UpdateGameState(GameState.GameOver);
     }
 
     private void OnDestroy()

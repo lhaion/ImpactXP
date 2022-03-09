@@ -1,0 +1,110 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &96845564106635267
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 96845564106635265}
+  - component: {fileID: 96845564106635276}
+  - component: {fileID: 96845564106635274}
+  - component: {fileID: 96845564106635277}
+  m_Layer: 0
+  m_Name: SpawnManager
+  m_TagString: Untagged
+  m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &96845564106635265
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96845564106635267}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 80}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+--- !u!114 &96845564106635276
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96845564106635267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7e80ab2b8c068d340a21b76479a7334f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wavesCount: 1
+  level: 1
+  fakeGameSpeed: 0.08
+  waveTime: 0
+  waveMaximumTime: 25
+  bonusTime: 0
+  bonusMaximumTime: 15
+  bonusMultiplier: 1
+--- !u!114 &96845564106635274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96845564106635267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9a4fe7c3f8c91341ab1246da78bf8ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 3153809997838179746, guid: 1f327bab3eb0f4549b770fb8c94174be, type: 3}
+  - {fileID: 3530710332042719223, guid: c36a671d36aae9d4687fde26004c00a2, type: 3}
+  - {fileID: 3530710332042719223, guid: c36a671d36aae9d4687fde26004c00a2, type: 3}
+  - {fileID: 8418578180524164673, guid: 26c376e256551c242b52e0683eba93c6, type: 3}
+  - {fileID: 8418578180524164673, guid: 26c376e256551c242b52e0683eba93c6, type: 3}
+  fresnelColor:
+  - {r: 5.992157, g: 5.2705884, b: 0, a: 1}
+  - {r: 8, g: 3.2, b: 0, a: 1}
+  - {r: 8, g: 0.57702225, b: 0, a: 1}
+  - {r: 8, g: 0.07917367, b: 0, a: 1}
+  - {r: 8, g: 0, b: 0.41254425, a: 1}
+  normalColor:
+  - {r: 0.6611067, g: 1, b: 0, a: 1}
+  - {r: 1, g: 0.92926645, b: 0, a: 1}
+  - {r: 1, g: 0.5797379, b: 0, a: 1}
+  - {r: 1, g: 0.2554821, b: 0, a: 1}
+  - {r: 1, g: 0, b: 0.14656258, a: 1}
+  displacementAmount:
+  - 0.05
+  - 0.1
+  - 0.15
+  - 0.2
+  - 0.25
+  spawnInterval: {x: 0.6, y: 2.5}
+  isRoundEnded: 0
+--- !u!114 &96845564106635277
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 96845564106635267}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 444affbf743654544acfed6a1e6a26c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  prefabs:
+  - {fileID: 0}
+  spawnInterval: {x: 0.6, y: 2.5}
+  isBonusRound: 0

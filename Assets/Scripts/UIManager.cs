@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 public class UIManager : MonoBehaviour
 {
     private Label scoreText;
+    private Label potText;
     private VisualElement lifeCounter;
     private VisualElement introScreen;
     private Label countdownLabel;
@@ -18,6 +19,7 @@ public class UIManager : MonoBehaviour
         var root = GetComponent<UIDocument>().rootVisualElement;
 
         scoreText = root.Q<Label>("Score");
+        potText = root.Q<Label>("potScore-label");
         countdownLabel = root.Q<Label>("Countdown");
         lifeCounter = root.Q<VisualElement>("LifeCounter");
         introScreen = root.Q<VisualElement>("IntroOverlay");
@@ -28,6 +30,7 @@ public class UIManager : MonoBehaviour
     {
         GameEvents.instance.onTakeDamage += TakeDamage;
         GameEvents.instance.onUpdateScore += UpdadeScore;
+        GameEvents.instance.onUpdatePot += UpdadePot;
         GameEvents.instance.onCountDown += CountDown;
         GameEvents.instance.onMatchStart += MatchStart;
 
@@ -47,6 +50,11 @@ public class UIManager : MonoBehaviour
     private void UpdadeScore()
     {
         scoreText.text = GameManager.instance.GetScore().ToString();
+    }
+
+    private void UpdadePot()
+    {
+        potText.text = GameManager.instance.GetPot().ToString();
     }
 
     private void OnDestroy()
@@ -71,7 +79,7 @@ public class UIManager : MonoBehaviour
         }
         else
         {
-            print("deu ruim");
+            //print("deu ruim");
         }
         
 

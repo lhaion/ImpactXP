@@ -10,17 +10,36 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private GameObject m_VisualEffectObject;
     [SerializeField] private float value = 10;
 
-
-    // Start is called before the first frame update
+    [SerializeField] private Renderer[] objectRenderers;
+    /*[ColorUsage(true, true)]public Color emissiveColor;
+    public Color color;
+    public float displacementAmount = 0.05f;*/
+    
     void Start()
     {
-        Destroy(gameObject, 6f);
+        //objectRenderer = GetComponent<Renderer>();
+        SetSpawnStats();
+        Destroy(gameObject, 20f);
+    }
+
+    public void SetSpawnStats()
+    {
+        int level = WavesManager.instance.GetLevel() - 1;
+
+        foreach (Renderer objectRenderer in objectRenderers)
+        {
+            objectRenderer.material.SetColor("_FresnelColor", EnemySpawner.instance.fresnelColor[level]);
+            objectRenderer.material.SetColor("_Color", EnemySpawner.instance.normalColor[level]);
+            objectRenderer.material.SetFloat("_DisplacementAmount", EnemySpawner.instance.displacementAmount[level]);
+        }
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(transform.forward * -m_Speed * Time.deltaTime);
+        //transform.Translate(transform.forward * -m_Speed * Time.deltaTime);
+        transform.Translate(0, 0, m_Speed * Time.deltaTime);
         transform.Rotate(transform.forward * Time.deltaTime * m_RotationSpeed);
     }
 
