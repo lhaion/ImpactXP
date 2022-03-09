@@ -43,6 +43,11 @@ public class WavesManager : MonoBehaviour
         return level;
     }
 
+    public int GetWave()
+    {
+        return wavesCount;
+    }
+
     public float GetMultiplier()
     {
         return bonusMultiplier;
@@ -101,7 +106,7 @@ public class WavesManager : MonoBehaviour
         {
             GameEvents.instance.RoundEnd();
 
-            if (level == 5)
+            if (level == 6)
             {
 
                 GameManager.instance.UpdateGameState(GameState.BossFight);

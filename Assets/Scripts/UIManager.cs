@@ -9,6 +9,7 @@ public class UIManager : MonoBehaviour
     private Label scoreText;
     private Label potText;
     private VisualElement lifeCounter;
+    private Label levelCounter;
     private VisualElement introScreen;
     private Label countdownLabel;
     private PlayerManager thisPlayer;
@@ -21,6 +22,7 @@ public class UIManager : MonoBehaviour
         scoreText = root.Q<Label>("Score");
         potText = root.Q<Label>("potScore-label");
         countdownLabel = root.Q<Label>("Countdown");
+        levelCounter = root.Q<Label>("levelCounter-label");
         lifeCounter = root.Q<VisualElement>("LifeCounter");
         introScreen = root.Q<VisualElement>("IntroOverlay");
     }
@@ -33,6 +35,8 @@ public class UIManager : MonoBehaviour
         GameEvents.instance.onUpdatePot += UpdadePot;
         GameEvents.instance.onCountDown += CountDown;
         GameEvents.instance.onMatchStart += MatchStart;
+        GameEvents.instance.onWaveStart += WaveStart;
+        GameEvents.instance.onBonusStart += BonusStart;
 
         introScreen.visible = true;
     }
@@ -40,6 +44,16 @@ public class UIManager : MonoBehaviour
     private void MatchStart()
     {
         introScreen.visible = false;
+    }
+
+    private void WaveStart()
+    {
+        levelCounter.text = WavesManager.instance.GetLevel().ToString() + "-" + WavesManager.instance.GetWave().ToString();
+    }
+
+    private void BonusStart()
+    {
+        levelCounter.text = "BONUS x" + WavesManager.instance.GetMultiplier().ToString();
     }
 
     private void TakeDamage()

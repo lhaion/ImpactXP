@@ -40,7 +40,7 @@ public class EnemyBehaviour : MonoBehaviour
     {
         //transform.Translate(transform.forward * -m_Speed * Time.deltaTime);
         transform.Translate(0, 0, m_Speed * Time.deltaTime);
-        transform.Rotate(transform.forward * Time.deltaTime * m_RotationSpeed);
+        transform.Rotate(0, 0, Time.deltaTime * m_RotationSpeed);
     }
 
     private void OnTriggerEnter(Collider col)

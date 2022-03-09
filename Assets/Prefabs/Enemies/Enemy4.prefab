@@ -332,8 +332,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shotOrigin: {fileID: 3183664672795806587}
-  shotPrefab: {fileID: 0}
+  shotPrefab: {fileID: 1062633689594832183, guid: 5d18da3fae7a71b4b9bc2f6481a88709,
+    type: 3}
   shotAudioClip:
   - {fileID: 0}
   - {fileID: 0}
-  shotSpeed: 25
+  shotSpeed: 50
+  shootInterval: 1

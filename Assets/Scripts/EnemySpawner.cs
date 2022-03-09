@@ -57,6 +57,7 @@ public class EnemySpawner : MonoBehaviour
         while(!isRoundEnded)
         {
             Vector3 newPos = new Vector3(GetRandomX, GetRandomY, transform.position.z);
+            
             Instantiate(prefabs[level], newPos, transform.rotation);
             //newEnemy.gameObject.GetComponent<EnemyBehaviour>().SetSpawnStats(fresnelColor[level], normalColor[level], displacementAmount[level]);
 

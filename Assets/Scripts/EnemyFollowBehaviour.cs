@@ -7,20 +7,36 @@ using UnityEngine.InputSystem;
 public class EnemyFollowBehaviour : MonoBehaviour
 {
     public Transform target;
-    public float smoothTime = 0.3F;
+    //public float smoothTime = 0.3F;
     private Vector3 velocity = Vector3.zero;
+    [SerializeField] float followTimer = 3;
 
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        if(GameObject.FindGameObjectWithTag("Player"))
+        {
+            target = GameObject.FindGameObjectWithTag("Player").transform;
+        }
+
+        StartCoroutine(FollowTimer());
     }
 
     // Update is called once per frame
     void Update()
     {
-        if(target != null)
+        if(target != null && followTimer > 0)
         {
             Follow();
+        }
+    }
+
+    private IEnumerator FollowTimer()
+    {
+        while(followTimer > 0)
+        {
+            followTimer--;
+            //Debug.Log(followTimer);
+            yield return new WaitForSeconds(1f);
         }
     }
 

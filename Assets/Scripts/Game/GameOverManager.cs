@@ -23,7 +23,7 @@ public class GameOverManager : MonoBehaviour
         {
             gameTimeScale = Mathf.SmoothDamp(Time.timeScale, 0, ref velocity, smoothTime);
             
-            if (gameTimeScale < 0.1f)
+            if (gameTimeScale < 0.2f)
                 gameTimeScale = 0;
 
             Time.timeScale = gameTimeScale;

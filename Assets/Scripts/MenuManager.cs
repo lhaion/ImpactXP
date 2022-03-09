@@ -7,6 +7,7 @@ using UnityEngine.SceneManagement;
 public class MenuManager : MonoBehaviour
 {
     public Button startGameButton;
+    public Button startGamex4Button;
     public Button quitGameButton;
     public Button settingsButton;
     public Button walletButton;
@@ -16,6 +17,7 @@ public class MenuManager : MonoBehaviour
         var root = GetComponent<UIDocument>().rootVisualElement;
 
         startGameButton = root.Q<Button>("start-button");
+        startGamex4Button = root.Q<Button>("startx4-button");
         quitGameButton = root.Q<Button>("quit-button");
         settingsButton = root.Q<Button>("settings-button");
         walletButton = root.Q<Button>("wallet-button");
@@ -23,6 +25,7 @@ public class MenuManager : MonoBehaviour
         startGameButton.clicked += StartGameButton_clicked;
         quitGameButton.clicked += QuitGameButton_clicked;
         settingsButton.clicked += SettingsButton_clicked;
+        startGamex4Button.clicked += StartGameButtonx4_clicked;
     }
 
     private void SettingsButton_clicked()
@@ -38,6 +41,11 @@ public class MenuManager : MonoBehaviour
     private void StartGameButton_clicked()
     {
         StartCoroutine(LoadSceneAsync(1));
+    }
+
+    private void StartGameButtonx4_clicked()
+    {
+        StartCoroutine(LoadSceneAsync(2));
     }
 
     IEnumerator LoadSceneAsync(int sceneNumber)

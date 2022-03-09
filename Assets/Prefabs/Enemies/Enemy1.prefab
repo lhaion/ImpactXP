@@ -102,6 +102,8 @@ MonoBehaviour:
   m_VisualEffectObject: {fileID: 2981946171273800111, guid: 5d7af43694230a248b8b215e73ee0e2d,
     type: 3}
   value: 10
+  objectRenderers:
+  - {fileID: 3514049109324987511}
 --- !u!65 &1798269856
 BoxCollider:
   m_ObjectHideFlags: 0
