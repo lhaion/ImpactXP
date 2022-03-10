@@ -42,7 +42,7 @@ public class PlayerMovement : MonoBehaviour
 
         float xDistance = transform.position.x - target.position.x;
 
-        Debug.Log("Distance: " + xDistance);
+        //Debug.Log("Distance: " + xDistance);
     }
 
     public void OnLook(InputValue value)

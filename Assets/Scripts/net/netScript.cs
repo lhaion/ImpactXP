@@ -21,8 +21,6 @@ using Nethereum.Web3.Accounts;
 
 public class netScript : MonoBehaviour
 {
-
-
     public netScript instance;
 
     public string Url = "https://ropsten.infura.io/v3/f51fc6313a05426899183b87a05ff580"; //testnet remote node ropsten
@@ -43,16 +41,16 @@ public class netScript : MonoBehaviour
     }
 
 
-    public void MakeTransfer(value) {
-        Debug.Log(GameManager.instance.GetPot()," ",value);
+    public void MakeTransfer(int value) {
+        Debug.Log(GameManager.instance.GetPot() + " " + value);
     }
 
     public void TransferRequest()
     {
-        StartCoroutine(TransferEther());
+        StartCoroutine(TransferEther("", 0));
     }
 
-    public IEnumerator TransferEther(PrivateKey, value)
+    public IEnumerator TransferEther(string PrivateKey, int value)
     {
         
         var ethTransfer = new EthTransferUnityRequest(Url, PrivateKey, value);
