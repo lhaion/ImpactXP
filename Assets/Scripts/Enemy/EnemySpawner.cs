@@ -40,8 +40,8 @@ public class EnemySpawner : MonoBehaviour
     {
         isRoundEnded = false;
         effect.SetGradient("Gradient", tunelColor[WavesManager.instance.GetLevel()]);
-        nebulas[0].SetGradient("Gradient", nebulaColor[WavesManager.instance.GetLevel()]);
-        nebulas[1].SetGradient("Gradient", nebulaColor[WavesManager.instance.GetLevel()]);
+        nebulas[0].SetGradient("Color", nebulaColor[WavesManager.instance.GetLevel()]);
+        nebulas[1].SetGradient("Color", nebulaColor[WavesManager.instance.GetLevel()]);
         WaveStart();
     }
 

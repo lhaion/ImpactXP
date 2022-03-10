@@ -154,3 +154,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Speed: 20
+  m_VisualEffectObject: {fileID: 2981946171273800111, guid: 5d7af43694230a248b8b215e73ee0e2d,
+    type: 3}

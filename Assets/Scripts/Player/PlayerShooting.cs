@@ -23,7 +23,7 @@ public class PlayerShooting : MonoBehaviour
         layerMask = ~layerMask;
 
         RaycastHit hit;
-        if (Physics.Raycast(shotOrigin.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
+        /*if (Physics.Raycast(shotOrigin.position, transform.TransformDirection(Vector3.forward), out hit, Mathf.Infinity, layerMask))
         {
             Debug.DrawRay(shotOrigin.position, transform.TransformDirection(Vector3.forward) * hit.distance, Color.yellow);
             //Debug.Log(hit.collider);
@@ -32,7 +32,9 @@ public class PlayerShooting : MonoBehaviour
         {
             Debug.DrawRay(shotOrigin.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
             //Debug.Log("Did not Hit");
-        }
+        }*/
+        Debug.DrawRay(shotOrigin.position, transform.TransformDirection(Vector3.forward) * 1000, Color.white);
+
     }
     void Shoot()
     {
@@ -51,7 +53,7 @@ public class PlayerShooting : MonoBehaviour
     public void OnFire()
     {
         //Debug.Log("Shoot");
-        if(Time.time >= shootTimeStamp)
+        if(Time.time >= shootTimeStamp && this.enabled)
         {
             Shoot();
             shootTimeStamp = Time.time + fireRateInterval;

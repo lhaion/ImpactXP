@@ -60,7 +60,7 @@ public class EnemyBehaviour : MonoBehaviour
         {
             GameManager.instance.AddScore(value);
             var explosion = Instantiate(m_VisualEffectObject, col.transform.position, Quaternion.identity);
-            Destroy(explosion, 2f);
+            Destroy(explosion, 4f);
             Destroy(col.gameObject);
             Destroy(this.gameObject);
         }

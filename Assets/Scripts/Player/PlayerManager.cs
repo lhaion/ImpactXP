@@ -6,10 +6,18 @@ public class PlayerManager : MonoBehaviour
 {
     public float score { get; private set; }
     [SerializeField]public int life { get; [SerializeField]private set; } = 3;
+    [SerializeField]
     // Start is called before the first frame update
     void Start()
     {
         GameEvents.instance.onTakeDamage += TakeDamage;
+        GameEvents.instance.onMatchStart += MatchStart;
+    }
+
+    private void MatchStart()
+    {
+        GetComponent<PlayerMovement>().enabled = true;
+        GetComponent<PlayerShooting>().enabled = true;
     }
 
     private void TakeDamage()
