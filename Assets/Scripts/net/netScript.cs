@@ -23,7 +23,7 @@ public class netScript : MonoBehaviour
 {
 
 
-
+    public netScript instance;
 
     public string Url = "https://ropsten.infura.io/v3/f51fc6313a05426899183b87a05ff580"; //testnet remote node ropsten
     public string PrivateKey = ""; //signkeys
@@ -37,19 +37,25 @@ public class netScript : MonoBehaviour
 
     void Start()
     {
+        instance = this;
         Debug.Log("ETH script start");
         Debug.Log(GameManager.instance.GetPot());
     }
-    
-public void TransferRequest()
+
+
+    public void MakeTransfer(value) {
+        Debug.Log(GameManager.instance.GetPot()," ",value);
+    }
+
+    public void TransferRequest()
     {
         StartCoroutine(TransferEther());
     }
 
-    public IEnumerator TransferEther()
+    public IEnumerator TransferEther(PrivateKey, value)
     {
         
-        var ethTransfer = new EthTransferUnityRequest(Url, PrivateKey, 444444444500);
+        var ethTransfer = new EthTransferUnityRequest(Url, PrivateKey, value);
 
         var receivingAddress = AddressTo;
 
