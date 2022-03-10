@@ -17,9 +17,14 @@ using Nethereum.Signer;
 using Nethereum.Util;
 using Nethereum.Web3.Accounts;
 
+
+
 public class netScript : MonoBehaviour
 {
-    
+
+
+
+
     public string Url = "https://ropsten.infura.io/v3/f51fc6313a05426899183b87a05ff580"; //testnet remote node ropsten
     public string PrivateKey = ""; //signkeys
     public string AddressTo = ""; //receiver
@@ -29,9 +34,11 @@ public class netScript : MonoBehaviour
     public decimal BalanceAddressTo = 0m;
     public string ResultBalanceAddressTo;
     public string ResultTxnHash;
+
     void Start()
     {
         Debug.Log("ETH script start");
+        Debug.Log(GameManager.instance.GetPot());
     }
     
 public void TransferRequest()
