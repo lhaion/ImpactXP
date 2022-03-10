@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: M_Boss
-  m_Shader: {fileID: -6465566751694194690, guid: 8d0b60a888274c4489ea39eb835147e9,
+  m_Shader: {fileID: -6465566751694194690, guid: 80d1c42e45adb054fb4acec42daf6fc2,
     type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 2
@@ -92,23 +92,28 @@ Material:
     m_Ints: []
     m_Floats:
     - _AlphaClip: 0
+    - _BaseDissolvePower: 3
     - _Blend: 0
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _DeformAmount: 0.003
+    - _Cutoff_Height: -30
+    - _DeformAmount: 0.001
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DissolvePower: 0.57
     - _DstBlend: 0
+    - _Edge_Width: 3.9
     - _EnvironmentReflections: 1
     - _FresnelPower: 5
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
+    - _Noise_Scale: 54.2
+    - _Noise_Strength: 10.57
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -123,9 +128,11 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 1
     m_Colors:
-    - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _Color: {r: 2.9960785, g: 0.21960774, b: 0.37929422, a: 1}
+    - _BaseColor: {r: 6.8831816, g: 0.7928272, b: 0.5045264, a: 1}
+    - _Color: {r: 4.867144, g: 0.17687817, b: 0.12741211, a: 1}
+    - _Edge_Color: {r: 2.1185474, g: 1.9743531, b: 1.4752189, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
-    - _FresneColor: {r: 0.33245036, g: 3.37073, b: 3.968627, a: 0}
+    - _FresneColor: {r: 0, g: 2, b: 1.8745098, a: 1}
+    - _FresnelColor: {r: 3.968627, g: 0.9706523, b: 0.3137255, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
   m_BuildTextureStacks: []

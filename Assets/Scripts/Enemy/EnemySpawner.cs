@@ -1,15 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class EnemySpawner : MonoBehaviour
 {
     [SerializeField] private GameObject[] prefabs;
-    [ColorUsage(true, true)] public Color[] fresnelColor;
-    public Color[] normalColor;
+    [GradientUsage(true)] public Gradient[] tunelColor;
+    [GradientUsage(true)] public Gradient[] nebulaColor;
+    //public Color[] normalColor;
     public float[] displacementAmount;
     [SerializeField] private Vector2 spawnInterval;
     [SerializeField] private bool isRoundEnded = false;
+
+    [SerializeField] private VisualEffect effect;
+    [SerializeField] private VisualEffect[] nebulas;
 
     public static EnemySpawner instance;
 
@@ -34,7 +39,9 @@ public class EnemySpawner : MonoBehaviour
     private void RoundStart()
     {
         isRoundEnded = false;
-        
+        effect.SetGradient("Gradient", tunelColor[WavesManager.instance.GetLevel()]);
+        nebulas[0].SetGradient("Gradient", nebulaColor[WavesManager.instance.GetLevel()]);
+        nebulas[1].SetGradient("Gradient", nebulaColor[WavesManager.instance.GetLevel()]);
         WaveStart();
     }
 
@@ -52,13 +59,21 @@ public class EnemySpawner : MonoBehaviour
     {
         GameEvents.instance.WaveStart();
 
-        int level = WavesManager.instance.GetLevel() - 1;
+        int level = WavesManager.instance.GetLevel();
 
         while(!isRoundEnded)
         {
             Vector3 newPos = new Vector3(GetRandomX, GetRandomY, transform.position.z);
             
-            Instantiate(prefabs[level], newPos, transform.rotation);
+            if(level < 5)
+            {
+                var newEnemy = Instantiate(prefabs[level - 1], newPos, transform.rotation);
+            }
+            else
+            {
+                var newEnemy = Instantiate(prefabs[Mathf.FloorToInt(Random.Range(0, 4))], newPos, transform.rotation);
+            }
+            
             //newEnemy.gameObject.GetComponent<EnemyBehaviour>().SetSpawnStats(fresnelColor[level], normalColor[level], displacementAmount[level]);
 
             float waitRandom = Random.Range(spawnInterval.x, spawnInterval.y);

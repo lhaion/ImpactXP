@@ -35,11 +35,14 @@ public class PlayerMovement : MonoBehaviour
         //Debug.Log("Pure: " + deltaPure + " Amplified: " + deltaAmplified);
         aim.transform.Translate(deltaAmplified.x * Time.deltaTime, deltaAmplified.y * Time.deltaTime, 0);
 
-        // Define a target position above and behind the target transform
-        Vector3 aimPosition = aim.TransformPoint(aim.position);
-
-        // Smoothly move the camera towards that target position
+        // Smoothly move the player towards that target position
         transform.position = Vector3.SmoothDamp(transform.position, target.position, ref velocity, smoothTime);
+
+        transform.position = new Vector3(Mathf.Clamp(transform.position.x, -8, 8), Mathf.Clamp(transform.position.y, -8, 8), transform.position.z);
+
+        float xDistance = transform.position.x - target.position.x;
+
+        Debug.Log("Distance: " + xDistance);
     }
 
     public void OnLook(InputValue value)

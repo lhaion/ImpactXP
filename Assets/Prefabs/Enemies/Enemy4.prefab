@@ -303,9 +303,12 @@ MonoBehaviour:
   m_VisualEffectObject: {fileID: 2981946171273800111, guid: 5d7af43694230a248b8b215e73ee0e2d,
     type: 3}
   value: 25
+  isRandom: 0
   objectRenderers:
   - {fileID: 5735586551348326168}
   - {fileID: 1524060202273436576}
+  mesh: []
+  meshFilter: {fileID: 0}
 --- !u!65 &8418578180524164672
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -338,4 +341,4 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   shotSpeed: 50
-  shootInterval: 1
+  shootInterval: 2

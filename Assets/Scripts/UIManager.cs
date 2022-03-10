@@ -8,11 +8,16 @@ public class UIManager : MonoBehaviour
 {
     private Label scoreText;
     private Label potText;
-    private VisualElement lifeCounter;
     private Label levelCounter;
-    private VisualElement introScreen;
     private Label countdownLabel;
+
+    private VisualElement lifeCounter;
+    private VisualElement introScreen;
+    private VisualElement levelElement;
+    private VisualElement bossOverlay;
+    private VisualElement bossLifeBarProgress;
     private PlayerManager thisPlayer;
+
 
     void Awake()
     {
@@ -23,8 +28,12 @@ public class UIManager : MonoBehaviour
         potText = root.Q<Label>("potScore-label");
         countdownLabel = root.Q<Label>("Countdown");
         levelCounter = root.Q<Label>("levelCounter-label");
+
         lifeCounter = root.Q<VisualElement>("LifeCounter");
         introScreen = root.Q<VisualElement>("IntroOverlay");
+        levelElement = root.Q<VisualElement>("level-element");
+        bossOverlay = root.Q<VisualElement>("BossOverlay");
+        bossLifeBarProgress = root.Q<VisualElement>("progress");
     }
 
     // Start is called before the first frame update
@@ -37,8 +46,20 @@ public class UIManager : MonoBehaviour
         GameEvents.instance.onMatchStart += MatchStart;
         GameEvents.instance.onWaveStart += WaveStart;
         GameEvents.instance.onBonusStart += BonusStart;
+        GameEvents.instance.onBossFightStart += BossFightStart;
 
         introScreen.visible = true;
+    }
+
+    private void BossFightStart()
+    {
+        levelElement.visible = false;
+        bossOverlay.visible = true;
+    }
+
+    public void UpdateBossLifeBar(float life)
+    {
+        bossLifeBarProgress.style.width = Length.Percent(life);
     }
 
     private void MatchStart()

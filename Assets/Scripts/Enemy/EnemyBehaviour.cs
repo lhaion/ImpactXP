@@ -9,17 +9,28 @@ public class EnemyBehaviour : MonoBehaviour
     [SerializeField] private float m_RotationSpeed = 180f;
     [SerializeField] private GameObject m_VisualEffectObject;
     [SerializeField] private float value = 10;
+    [SerializeField] private bool isRandom = true;
 
     [SerializeField] private Renderer[] objectRenderers;
+    [SerializeField] private Mesh[] mesh;
+    [SerializeField] private MeshFilter meshFilter;
     /*[ColorUsage(true, true)]public Color emissiveColor;
     public Color color;
     public float displacementAmount = 0.05f;*/
-    
+
     void Start()
     {
         //objectRenderer = GetComponent<Renderer>();
-        SetSpawnStats();
-        Destroy(gameObject, 20f);
+        //SetSpawnStats();
+
+        if(isRandom)
+        {
+            meshFilter = GetComponent<MeshFilter>();
+            meshFilter.mesh = mesh[Mathf.FloorToInt(Random.Range(0, mesh.Length))];
+        }
+
+        Destroy(gameObject, 10f);
+
     }
 
     public void SetSpawnStats()
@@ -28,9 +39,9 @@ public class EnemyBehaviour : MonoBehaviour
 
         foreach (Renderer objectRenderer in objectRenderers)
         {
-            objectRenderer.material.SetColor("_FresnelColor", EnemySpawner.instance.fresnelColor[level]);
+            /*objectRenderer.material.SetColor("_FresnelColor", EnemySpawner.instance.fresnelColor[level]);
             objectRenderer.material.SetColor("_Color", EnemySpawner.instance.normalColor[level]);
-            objectRenderer.material.SetFloat("_DisplacementAmount", EnemySpawner.instance.displacementAmount[level]);
+            objectRenderer.material.SetFloat("_DisplacementAmount", EnemySpawner.instance.displacementAmount[level]);*/
         }
         
     }

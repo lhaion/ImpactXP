@@ -63,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: da7938fa621835248b1f643dbdf38da0, type: 2}
+  - {fileID: 2100000, guid: 448aff1ede51abb4ba29c017b608889f, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -102,8 +102,17 @@ MonoBehaviour:
   m_VisualEffectObject: {fileID: 2981946171273800111, guid: 5d7af43694230a248b8b215e73ee0e2d,
     type: 3}
   value: 10
+  isRandom: 1
   objectRenderers:
   - {fileID: 3514049109324987511}
+  mesh:
+  - {fileID: -5428759957132352691, guid: 81f9f98c6435b3b4088d0c890397ee5d, type: 3}
+  - {fileID: -580286448362275346, guid: 6beb7e00fa3848149bcee3122fd5c48a, type: 3}
+  - {fileID: -8965437414972606644, guid: 4ac656ce06e462349898e70b30984ca6, type: 3}
+  - {fileID: 2878649690621246465, guid: 832f76458e607ff4bbb53eef1cb84d0a, type: 3}
+  - {fileID: -6830279679452449593, guid: 3169da5bebe37d3429883c454c5d7404, type: 3}
+  - {fileID: 5866797788517600665, guid: 0a75bcb27302498469e3b915db53b97e, type: 3}
+  meshFilter: {fileID: 0}
 --- !u!65 &1798269856
 BoxCollider:
   m_ObjectHideFlags: 0

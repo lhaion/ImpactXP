@@ -7,8 +7,12 @@ public class ShakeCamera : MonoBehaviour {
 
 	private Vector3 startPosition;
 
+	public static ShakeCamera instance;
+
 	private void Start() {
 		startPosition = transform.position;
+
+		instance = this;
 	}
 
 	private void Update() {
@@ -22,7 +26,7 @@ public class ShakeCamera : MonoBehaviour {
 		}
 	}
 
-	public static void Shake(float _shakePower, float _shakeDuration) {
+	public void Shake(float _shakePower, float _shakeDuration) {
 		shakePower = _shakePower;
 		shakeDuration = _shakeDuration;
 	}

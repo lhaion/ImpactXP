@@ -106,15 +106,18 @@ public class WavesManager : MonoBehaviour
         {
             GameEvents.instance.RoundEnd();
 
-            if (level == 6)
+            if (level == 5)
             {
-
                 GameManager.instance.UpdateGameState(GameState.BossFight);
                 return;
             }
-            GameManager.instance.UpdateGameState(GameState.BonusRound);
-            level++;
-            wavesCount = 1;
+            else
+            {
+                GameManager.instance.UpdateGameState(GameState.BonusRound);
+                level++;
+                wavesCount = 1;
+            }
+            
         }
         else
         {

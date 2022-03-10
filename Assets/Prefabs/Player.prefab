@@ -1139,8 +1139,9 @@ GameObject:
   - component: {fileID: 329820153019470635}
   - component: {fileID: 4478152401285235563}
   - component: {fileID: 141942511891043978}
+  - component: {fileID: 4478152401285235559}
   m_Layer: 0
-  m_Name: Model_Phoenix 1
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1153,8 +1154,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3850093129446488414}
-  m_LocalRotation: {x: 0.040150777, y: 0.0814897, z: -0.23645602, w: 0.9673861}
-  m_LocalPosition: {x: -0.78, y: -0.34, z: 0.76}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1165,7 +1166,7 @@ Transform:
   - {fileID: 5637100319456227227}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 6.674, y: 8.026, z: -27.002}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &9179214621682154387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1178,7 +1179,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b144dd759edbdf4fadd804abc4c751a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  life: 3
 --- !u!114 &86703657764550416
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1192,8 +1192,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aim: {fileID: 0}
-  desiredPosition: {fileID: 0}
-  speed: 6
 --- !u!114 &4478152401285235554
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1210,6 +1208,7 @@ MonoBehaviour:
   aim: {fileID: 0}
   target: {fileID: 0}
   smoothTime: 0.3
+  sense: 4.09
 --- !u!114 &900912732473268756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1229,6 +1228,7 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 5f2d91dc70be60644baf4953a8cb4d9b, type: 3}
   - {fileID: 8300000, guid: ade7e98ef757ba046bc5cd64da9688c0, type: 3}
   shotSpeed: 35
+  fireRateInterval: 0.3
 --- !u!114 &104313282289265882
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1434,6 +1434,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &4478152401285235559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3850093129446488414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fce0da29cf3eade47b424143eb508e4c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3851337471307665124
 GameObject:
   m_ObjectHideFlags: 0

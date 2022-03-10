@@ -16,6 +16,8 @@ public class PlayerManager : MonoBehaviour
     {
         life--;
 
+        ShakeCamera.instance.Shake(1, 1);
+
         if(life <= 0)
         {
             

@@ -8,7 +8,9 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private GameObject shotPrefab;
     [SerializeField] private AudioClip[] shotAudioClip;
     [SerializeField] private float shotSpeed = 10;
+    [SerializeField] private float fireRateInterval = 0.3f;
     private AudioSource audioSource;
+    private float shootTimeStamp = 0;
 
     private void Start()
     {
@@ -48,7 +50,12 @@ public class PlayerShooting : MonoBehaviour
 
     public void OnFire()
     {
-        Debug.Log("Shoot");
-        Shoot();
+        //Debug.Log("Shoot");
+        if(Time.time >= shootTimeStamp)
+        {
+            Shoot();
+            shootTimeStamp = Time.time + fireRateInterval;
+        }
+        
     }
 }

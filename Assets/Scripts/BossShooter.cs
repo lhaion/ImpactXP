@@ -25,7 +25,7 @@ public class BossShooter : MonoBehaviour
         Vector3 headPosition = shotOrigin[choosenHead].position;
 
         var newShot = Instantiate(shotPrefab, headPosition, shotOrigin[choosenHead].rotation);
-        newShot.GetComponent<Rigidbody>().velocity = transform.forward * shotSpeed;
+        newShot.GetComponent<Rigidbody>().velocity = newShot.transform.forward * shotSpeed;
 
         Destroy(newShot, 4f);
 
