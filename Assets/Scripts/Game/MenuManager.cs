@@ -85,8 +85,10 @@ public class MenuManager : MonoBehaviour
         WPconnectWalletPanel.SetActive(false);
         WPconnectingWalletPanel.SetActive(false);
         MMconnectedWalletPanel.SetActive(true);
+        walletMenu.SetActive(false);
+        MMconnectWalletPanel.SetActive(false);
         walletHash.text = GameManager.instance.Wallet;
-        tokensAmount.text = GameManager.instance.GetTokens();
+        tokensAmount.text = GameManager.instance.GetTokens().ToString();
     }
 
     private void Instance_onTryWalletConnection()

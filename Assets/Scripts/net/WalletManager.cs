@@ -31,6 +31,25 @@ public class WalletManager : MonoBehaviour
         if (connection)
         {
             GameManager.instance.Wallet = await Web3Manager.GetAddress();
+            
+            var x = await Web3Manager.GetERC20Tokens("eth");
+            
+            
+            foreach (var y in x)
+            {
+                if (y.ContainsValue("ImpactXP"))
+                {
+                    foreach (var z in y)
+                    {
+                        if (z.Key == "balance")
+                            GameManager.instance.tokens = float.Parse(z.Value);
+
+                    }
+                }
+                
+            }
+            
+            
             GameEvents.instance.WalletConnected();
             
         }

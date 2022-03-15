@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public GameState State;
     [SerializeField] private float score;
     [SerializeField] private float pot = 0;
-    [SerializeField] private float tokens;
+    [SerializeField] public float tokens;
     [SerializeField] private float ticketValue = 600;
     public bool isPaused;
     public bool isFreeMode;
@@ -41,6 +41,7 @@ public class GameManager : MonoBehaviour
 
     public void SetWallet()
     {
+        
         isWalletConnected = true;
     }
 
@@ -127,8 +128,6 @@ public class GameManager : MonoBehaviour
         //Debug.Log("MainMenu");
         Time.timeScale = 1;
         isPaused = false;
-
-        //tokens = GetTokens();
     }
 
     private void HandleIntro()
