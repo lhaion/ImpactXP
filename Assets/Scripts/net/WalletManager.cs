@@ -2,28 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using FusedVR.Web3;
+
 
 public class WalletManager : MonoBehaviour
 {
     public TMPro.TMP_InputField emailInput;
     public void TryToConnectWallet()
     {
-        StartCoroutine(ConnectWallet());
+        ConnectWallet();
     }
 
-    async private IEnumerator ConnectWallet()
+    public async void ConnectWallet()
     {
         GameEvents.instance.TryWalletConnection();
 
         string walletEmail = emailInput.text;
-        if ()
-        bool connection = await Web3Manager.Login("", walletEmail);
+
+        bool connection = false;// = await Web3Manager.Login("", walletEmail);
         float timeout = 30f;
         
-        while(!connection || timeout > 0)
+        while(!connection)
         {
-            timeout--;
-            yield return new WaitForSeconds(1);
+            connection = await Web3Manager.Login("", walletEmail);
         }
         
         if(connection)

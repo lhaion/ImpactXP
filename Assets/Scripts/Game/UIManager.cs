@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 
+
 public class UIManager : MonoBehaviour
 {
     private Label scoreText;
@@ -23,6 +24,10 @@ public class UIManager : MonoBehaviour
 
     private Button resumeGameButton;
     private Button quitGameButton;
+
+    public GameObject pausePanel;
+    public GameObject quitPanel;
+    public GameObject transactionPanel;
 
     private PlayerManager thisPlayer;
 
@@ -66,42 +71,65 @@ public class UIManager : MonoBehaviour
         GameEvents.instance.onPauseGame += PauseGame;
         GameEvents.instance.onResumeGame += ResumeGame;
 
-        resumeGameButton.clicked += ResumeGame_clicked;
-        quitGameButton.clicked += QuitGame_clicked;
+        /*resumeGameButton.clicked += ResumeGame_clicked;
+        quitGameButton.clicked += QuitGame_clicked;*/
 
         introScreen.visible = true;
     }
 
-    private void QuitGame_clicked()
+    public void ConfirmQuitGame_clicked()
     {
         //throw new NotImplementedException();
         GameEvents.instance.MatchEnd();
 
     }
 
-    private void ResumeGame_clicked()
+    public void QuitGame_clicked()
+    {
+        quitPanel.SetActive(true);
+        pausePanel.SetActive(false);
+    }
+
+    public void KeepPlaying_clicked()
+    {
+        quitPanel.SetActive(false);
+        pausePanel.SetActive(true);
+    }
+
+    public void ResumeGame_clicked()
     {
         GameEvents.instance.ResumeGame();
     }
 
-    private void ResumeGame()
+    public void ResumeGame()
     {
-        pauseOverlay.visible = false;
+        //pauseOverlay.visible = false;
+        pausePanel.SetActive(false);
+        quitPanel.SetActive(false);
     }
 
-    private void PauseGame()
+    public void PauseGame()
     {
-        pauseOverlay.visible = true;
+        //pauseOverlay.visible = true;
+        if(GameManager.instance.State == GameState.Playing)
+        {
+            pausePanel.SetActive(true);
+        }
+        
+
     }
 
-    private void MatchEnd()
+    public void MatchEnd()
     {
-        pauseOverlay.visible = false;
+        //pauseOverlay.visible = false;
+        pausePanel.SetActive(false);
+        quitPanel.SetActive(false);
         gameOverlay.visible = false;
-        gameOverOverlay.visible = true;
+        //gameOverOverlay.visible = true;
+        transactionPanel.SetActive(true);
     }
 
-    private void BossFightStart()
+    public void BossFightStart()
     {
         levelElement.visible = false;
         bossOverlay.visible = true;
@@ -112,37 +140,37 @@ public class UIManager : MonoBehaviour
         bossLifeBarProgress.style.width = Length.Percent(life);
     }
 
-    private void MatchStart()
+    public void MatchStart()
     {
         introScreen.visible = false;
     }
 
-    private void WaveStart()
+    public void WaveStart()
     {
         levelCounter.text = WavesManager.instance.GetLevel().ToString() + "-" + WavesManager.instance.GetWave().ToString();
     }
 
-    private void BonusStart()
+    public void BonusStart()
     {
         levelCounter.text = "BONUS x" + WavesManager.instance.GetMultiplier().ToString();
     }
 
-    private void TakeDamage()
+    public void TakeDamage()
     {
         lifeCounter.RemoveAt(Mathf.Clamp(thisPlayer.life - 1, 0, 100));
     }
 
-    private void UpdadeScore()
+    public void UpdadeScore()
     {
         scoreText.text = GameManager.instance.GetScore().ToString();
     }
 
-    private void UpdadePot()
+    public void UpdadePot()
     {
         potText.text = GameManager.instance.GetPot().ToString();
     }
 
-    private void OnDestroy()
+    public void OnDestroy()
     {
         GameEvents.instance.onTakeDamage -= TakeDamage;
         GameEvents.instance.onUpdateScore -= UpdadeScore;
@@ -150,7 +178,7 @@ public class UIManager : MonoBehaviour
         GameEvents.instance.onMatchStart -= MatchStart;
     }
 
-    private void CountDown()
+    public void CountDown()
     {
         int number;
         var timer = countdownLabel.text;

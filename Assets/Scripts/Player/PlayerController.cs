@@ -28,10 +28,13 @@ public class PlayerController : MonoBehaviour
 
     public void OnPause()
     {
-        if (!GameManager.instance.isPaused)
-            GameEvents.instance.PauseGame();
-        else
-            GameEvents.instance.ResumeGame();
+        if(GameManager.instance.State == GameState.Playing)
+        {
+            if (!GameManager.instance.isPaused)
+                GameEvents.instance.PauseGame();
+            else
+                GameEvents.instance.ResumeGame();
+        }
     }
 
     public void PauseGame()
