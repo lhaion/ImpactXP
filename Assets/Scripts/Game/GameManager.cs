@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float pot = 0;
     [SerializeField] private float coins;
     public bool isPaused;
+    [SerializeField]private bool isWalletConnected;
 
 
     public static event Action<GameState> OnGameStateChange;
@@ -36,6 +37,15 @@ public class GameManager : MonoBehaviour
         GameEvents.instance.onBonusEnd += AddPot;
     }
 
+    public void SetWallet()
+    {
+        isWalletConnected = true;
+    }
+
+    public bool GetWalletState()
+    {
+        return isWalletConnected;
+    }
     public void AddCoins(float coinsBrought)
     {
         coins += coinsBrought;

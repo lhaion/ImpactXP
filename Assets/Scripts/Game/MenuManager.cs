@@ -142,14 +142,14 @@ public class MenuManager : MonoBehaviour
 
     public void StartGameButton_clicked()
     {
-        if (GameManager.instance.GetCoins() <= 0)
+        if (GameManager.instance.GetCoins() <= 0 || GameManager.instance.GetWalletState() == false)
         {
             NoCoins();
         }
         else
         {
             GameManager.instance.AddCoins(-1);
-            coins.text = "Coins: " + GameManager.instance.GetCoins().ToString();
+            //coins.text = "Coins: " + GameManager.instance.GetCoins().ToString();
             StartCoroutine(LoadSceneAsync(1));
         }
 
@@ -162,7 +162,8 @@ public class MenuManager : MonoBehaviour
 
     public void NoCoins()
     {
-        noCoinsPopUp.SetActive(true);
+        //noCoinsPopUp.SetActive(true);
+        Debug.Log("No wallet or coins available");
     }
 
     IEnumerator LoadSceneAsync(int sceneNumber)
