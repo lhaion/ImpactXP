@@ -2301,7 +2301,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 0x22Ac190A9CbF7cf0fed68AaBB8Ddf92c0f238286
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 89de3ad50a1d1ca4eaee0ab0ce1d8726, type: 2}
   m_sharedMaterial: {fileID: 7909906148596124668, guid: 89de3ad50a1d1ca4eaee0ab0ce1d8726,
@@ -4640,6 +4640,7 @@ MonoBehaviour:
   WPwalletErrorText: {fileID: 0}
   MMconnectedWalletPanel: {fileID: 0}
   MMconnectWalletPanel: {fileID: 0}
+  walletHash: {fileID: 0}
   coins: {fileID: 0}
 --- !u!1 &812734488
 GameObject:
@@ -5890,6 +5891,7 @@ MonoBehaviour:
   WPwalletErrorText: {fileID: 650260891}
   MMconnectedWalletPanel: {fileID: 1722817129}
   MMconnectWalletPanel: {fileID: 1506503412}
+  walletHash: {fileID: 38248565}
   coins: {fileID: 0}
 --- !u!114 &989208791
 MonoBehaviour:

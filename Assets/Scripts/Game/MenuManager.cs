@@ -14,6 +14,7 @@ public class MenuManager : MonoBehaviour
     public Button closePopUpButton;
     public Button closeWalletButton;*/
 
+    
     public GameObject noCoinsPopUp;
 
     public GameObject titlePanel;
@@ -31,8 +32,9 @@ public class MenuManager : MonoBehaviour
 
     public GameObject MMconnectedWalletPanel;
     public GameObject MMconnectWalletPanel;
-
-
+    
+    public TMPro.TMP_Text walletHash;
+    
     public TMPro.TMP_Text coins;
     // Start is called before the first frame update
     void Start()
@@ -79,6 +81,7 @@ public class MenuManager : MonoBehaviour
         WPconnectingWalletPanel.SetActive(false);
         MMconnectedWalletPanel.SetActive(true);
         MMconnectWalletPanel.SetActive(false);
+        walletHash.text = GameManager.instance.Wallet;
     }
 
     private void Instance_onTryWalletConnection()

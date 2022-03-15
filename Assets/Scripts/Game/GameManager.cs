@@ -5,9 +5,10 @@ using UnityEngine;
 
 
 
+
 public class GameManager : MonoBehaviour
 {
-
+    public string Wallet = "";
     public static GameManager instance;
     public GameState State;
     public Difficulty Difficulty;
@@ -36,6 +37,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         UpdateGameState(GameState.MainMenu);
+        GameEvents.instance.onWalletConnected += SetWallet;
         GameEvents.instance.onBonusEnd += AddPot;
     }
 

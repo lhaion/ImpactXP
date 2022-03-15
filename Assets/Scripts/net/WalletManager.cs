@@ -7,6 +7,7 @@ using FusedVR.Web3;
 
 public class WalletManager : MonoBehaviour
 {
+    
     public TMPro.TMP_InputField emailInput;
     public void TryToConnectWallet()
     {
@@ -26,9 +27,14 @@ public class WalletManager : MonoBehaviour
         {
             connection = await Web3Manager.Login("", walletEmail);
         }
-        
-        if(connection)
+
+        if (connection)
+        {
+            GameManager.instance.Wallet = await Web3Manager.GetAddress();
             GameEvents.instance.WalletConnected();
+            
+        }
+
         else
             GameEvents.instance.WalletError();
     }
