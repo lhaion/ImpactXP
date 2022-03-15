@@ -134,6 +134,7 @@ public class netScript : MonoBehaviour
     {
         
         instance = this;
+        
         Debug.Log("ETH script start");
 
         //MakeTransfer(100);
