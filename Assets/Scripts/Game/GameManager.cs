@@ -149,7 +149,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleGameOver()
     {
-        netScript.instance.MakeTransfer((int)GetPot(), Wallet)
+        netScript.instance.MakeTransfer((int) GetPot(), Wallet);
         Debug.Log("GameOver");
         GameEvents.instance.MatchEnd();
     }
