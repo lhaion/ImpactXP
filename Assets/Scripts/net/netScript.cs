@@ -142,7 +142,7 @@ public class netScript : MonoBehaviour
 
 
      
-     public IEnumerator MakeTransfer (int value) {
+     public IEnumerator MakeTransfer (int value, string wallet) {
          
          Debug.Log("Make transfer called");
          
@@ -151,7 +151,7 @@ public class netScript : MonoBehaviour
          var transactionMessage = new TransferFunction
          {
              FromAddress = "0x60557f029D46dd1ec57304A03f3054e2F7dfdCf0",
-             To = "0xC13D5bC2566b70Fafe9E1DB677f0EF411404DB2D",
+             To = wallet,
              Value = value,
          };
 
