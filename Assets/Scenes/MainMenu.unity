@@ -5891,7 +5891,7 @@ MonoBehaviour:
   WPwalletErrorText: {fileID: 650260891}
   MMconnectedWalletPanel: {fileID: 1722817129}
   MMconnectWalletPanel: {fileID: 1506503412}
-  walletHash: {fileID: 38248565}
+  walletHash: {fileID: 508637883}
   coins: {fileID: 0}
 --- !u!114 &989208791
 MonoBehaviour:

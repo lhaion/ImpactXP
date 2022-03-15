@@ -11,11 +11,11 @@ public class GameManager : MonoBehaviour
     public string Wallet = "";
     public static GameManager instance;
     public GameState State;
-    public Difficulty Difficulty;
     [SerializeField] private float score;
     [SerializeField] private float pot = 0;
     [SerializeField] private float coins;
     public bool isPaused;
+    public bool isFreeMode;
     [SerializeField]private bool isWalletConnected;
 
 
@@ -120,12 +120,14 @@ public class GameManager : MonoBehaviour
     {
         //Debug.Log("MainMenu");
         Time.timeScale = 1;
+        isPaused = false;
     }
 
     private void HandleIntro()
     {
         Debug.Log("Intro");
         pot = 0;
+        score = 0;
         //StartCoroutine(Countdown());
     }
 
@@ -179,12 +181,3 @@ public enum GameState
     GameOver
 }
 
-public enum Difficulty
-{
-    level1,
-    level2,
-    level3,
-    level4,
-    level5,
-    bossFight
-}

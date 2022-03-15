@@ -77,10 +77,9 @@ public class MenuManager : MonoBehaviour
 
     private void Instance_onWalletConnected()
     {
-        WPconnectWalletPanel.SetActive(true);
+        WPconnectWalletPanel.SetActive(false);
         WPconnectingWalletPanel.SetActive(false);
         MMconnectedWalletPanel.SetActive(true);
-        MMconnectWalletPanel.SetActive(false);
         walletHash.text = GameManager.instance.Wallet;
     }
 
@@ -151,6 +150,7 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
+            GameManager.instance.isFreeMode = true;
             GameManager.instance.AddCoins(-1);
             //coins.text = "Coins: " + GameManager.instance.GetCoins().ToString();
             StartCoroutine(LoadSceneAsync(1));
@@ -160,6 +160,7 @@ public class MenuManager : MonoBehaviour
 
     public void StartGameButtonx2_clicked()
     {
+        GameManager.instance.isFreeMode = true;
         StartCoroutine(LoadSceneAsync(2));
     }
 

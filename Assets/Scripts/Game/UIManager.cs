@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
+using UnityEngine.SceneManagement;
 
 
 public class UIManager : MonoBehaviour
@@ -28,6 +29,8 @@ public class UIManager : MonoBehaviour
     public GameObject pausePanel;
     public GameObject quitPanel;
     public GameObject transactionPanel;
+    public TMPro.TMP_Text transactionText;
+    public GameObject transactionButton;
 
     private PlayerManager thisPlayer;
 
@@ -70,6 +73,7 @@ public class UIManager : MonoBehaviour
         GameEvents.instance.onBossFightStart += BossFightStart;
         GameEvents.instance.onPauseGame += PauseGame;
         GameEvents.instance.onResumeGame += ResumeGame;
+        GameEvents.instance.onTransferSuccessful += TransactionConfirmed;
 
         /*resumeGameButton.clicked += ResumeGame_clicked;
         quitGameButton.clicked += QuitGame_clicked;*/
@@ -77,10 +81,34 @@ public class UIManager : MonoBehaviour
         introScreen.visible = true;
     }
 
+    public void TransactionConfirmed()
+    {
+        transactionText.text = "Transaction Confirmed";
+        transactionButton.SetActive(true);
+    }
+
+    public void TransactionButton_clicked()
+    {
+        //Debug.Log("Back Clicked");
+        GameManager.instance.UpdateGameState(GameState.MainMenu);
+        StartCoroutine(LoadSceneAsync(0));
+    }
+
     public void ConfirmQuitGame_clicked()
     {
         //throw new NotImplementedException();
-        GameEvents.instance.MatchEnd();
+
+
+        if(GameManager.instance.isFreeMode)
+        {
+            //GameManager.instance.UpdateGameState(GameState.GameOver);
+            GameManager.instance.UpdateGameState(GameState.MainMenu);
+            StartCoroutine(LoadSceneAsync(0));
+        }
+        else
+        {
+            GameManager.instance.UpdateGameState(GameState.GameOver);
+        }
 
     }
 
@@ -195,6 +223,19 @@ public class UIManager : MonoBehaviour
             //print("deu ruim");
         }
         
+
+    }
+
+    IEnumerator LoadSceneAsync(int sceneNumber)
+    {
+        AsyncOperation isLoaded = SceneManager.LoadSceneAsync(sceneNumber);
+
+        while (!isLoaded.isDone)
+        {
+            yield return null;
+        }
+
+        Debug.Log("Scene Loaded");
 
     }
 }
