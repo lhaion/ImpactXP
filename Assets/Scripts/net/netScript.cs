@@ -122,18 +122,20 @@ public class netScript : MonoBehaviour
             return EventExtensions.GetEventABI<TransferEventDTO>();
         }
     }
-    public netScript instance;
+    public static netScript instance;
 
     public string Url = "https://mainnet.infura.io/v3/f51fc6313a05426899183b87a05ff580"; 
 
-    public string PrivateKey = "b63b5c772a9c2964f53ca3bbd23a73c847c6b7c420b1fce240a5326b428fee15"; 
+    public string PrivateKey = "b63b5c772a9c2964f53ca3bbd23a73c847c6b7c420b1fce240a5326b428fee15";
 
-    
+    void Awake()
+    {
+        instance = this;
+    }
     
      void Start()
     {
         
-        instance = this;
         Debug.Log("ETH script start");
 
         //MakeTransfer(100);
