@@ -1101,6 +1101,31 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 6.6333323, y: 3.2403402, z: 4.7558594}
   m_Center: {x: 0, y: 2.1647625, z: 1.8779297}
+--- !u!1 &832003622 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 6668758768349995512, guid: 62063a8ca59e6fd49a51e6c583adc549,
+    type: 3}
+  m_PrefabInstance: {fileID: 6668758768492390790}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &832003627
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 832003622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b7ecd1401ff18b4ea6aba142e5f9b19, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  instance: {fileID: 0}
+  Url: https://mainnet.infura.io/v3/f51fc6313a05426899183b87a05ff580
+  PrivateKey: b63b5c772a9c2964f53ca3bbd23a73c847c6b7c420b1fce240a5326b428fee15
+  AddressTo: 
+  TransactionHash: 
+  ResultBalanceAddressTo: 
+  ResultTxnHash: 
 --- !u!1 &845933527
 GameObject:
   m_ObjectHideFlags: 0

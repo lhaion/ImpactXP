@@ -1,5 +1,14 @@
 {
   "dependencies": {
+    "com.fusedvr.web3": {
+      "version": "https://github.com/FusedVR/web3-unity-sdk.git",
+      "depth": 0,
+      "source": "git",
+      "dependencies": {
+        "com.unity.nuget.newtonsoft-json": "2.0.0"
+      },
+      "hash": "40ef1a3ccba1dc94990042d9c0ca16ea49b50139"
+    },
     "com.unity.burst": {
       "version": "1.6.0",
       "depth": 1,
