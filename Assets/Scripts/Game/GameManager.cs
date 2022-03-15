@@ -3,9 +3,6 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-
-
-
 public class GameManager : MonoBehaviour
 {
     public string Wallet = "";
@@ -13,7 +10,8 @@ public class GameManager : MonoBehaviour
     public GameState State;
     [SerializeField] private float score;
     [SerializeField] private float pot = 0;
-    [SerializeField] private float coins;
+    [SerializeField] private float tokens;
+    [SerializeField] private float ticketValue = 600;
     public bool isPaused;
     public bool isFreeMode;
     [SerializeField]private bool isWalletConnected;
@@ -46,18 +44,23 @@ public class GameManager : MonoBehaviour
         isWalletConnected = true;
     }
 
+    public float GetTicketValue()
+    {
+        return tokens;
+    }
+
     public bool GetWalletState()
     {
         return isWalletConnected;
     }
-    public void AddCoins(float coinsBrought)
+    public void AddTokens(float tokensBrought)
     {
-        coins += coinsBrought;
+        tokens += tokensBrought;
     }
 
-    public float GetCoins()
+    public float GetTokens()
     {
-        return coins;
+        return tokens;
     }
 
     // Update is called once per frame
@@ -108,6 +111,9 @@ public class GameManager : MonoBehaviour
             case GameState.GameOver:
                 HandleGameOver();
                 break;
+            case GameState.MakeTransfer:
+                HandleMakeTransfer();
+                break;
 
             default:
                 throw new ArgumentOutOfRangeException(nameof(newState), newState, null);                
@@ -121,6 +127,8 @@ public class GameManager : MonoBehaviour
         //Debug.Log("MainMenu");
         Time.timeScale = 1;
         isPaused = false;
+
+        //tokens = GetTokens();
     }
 
     private void HandleIntro()
@@ -151,9 +159,16 @@ public class GameManager : MonoBehaviour
 
     private void HandleGameOver()
     {
-        netScript.instance.MakeTransfer((int) GetPot(), Wallet);
         Debug.Log("GameOver");
         GameEvents.instance.MatchEnd();
+    }
+
+    private void HandleMakeTransfer()
+    {
+        Debug.Log("Trying handshake");
+        GameEvents.instance.TryTransaction();
+        netScript.instance.MakeTransfer((int)GetPot(), Wallet);
+        //GameEvents.instance.MatchEnd();
     }
 
     /*IEnumerator Countdown()
@@ -179,6 +194,7 @@ public enum GameState
     Playing,
     BonusRound,
     BossFight,
-    GameOver
+    GameOver,
+    MakeTransfer
 }
 

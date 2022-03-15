@@ -29,11 +29,18 @@ public class UIManager : MonoBehaviour
     public GameObject pausePanel;
     public GameObject quitPanel;
     public GameObject transactionPanel;
+    public GameObject gameOverPanel;
+
     public TMPro.TMP_Text transactionText;
+    public TMPro.TMP_Text finalPotText;
+    public TMPro.TMP_Text finalTokensText;
+    public TMPro.TMP_Text transactionButtonText;
+    public TMPro.TMP_Text gameOverButtonText;
     public GameObject transactionButton;
+    public GameObject gameOverButton;
+    public GameObject gameOverFreeButton;
 
     private PlayerManager thisPlayer;
-
 
     void Awake()
     {
@@ -74,11 +81,19 @@ public class UIManager : MonoBehaviour
         GameEvents.instance.onPauseGame += PauseGame;
         GameEvents.instance.onResumeGame += ResumeGame;
         GameEvents.instance.onTransferSuccessful += TransactionConfirmed;
+        GameEvents.instance.onTransferFailed += TransactionFailed;
 
         /*resumeGameButton.clicked += ResumeGame_clicked;
         quitGameButton.clicked += QuitGame_clicked;*/
 
         introScreen.visible = true;
+    }
+
+    public void TransactionFailed()
+    {
+        transactionText.text = "Transaction Failed";
+        transactionButton.SetActive(true);
+        //transactionButtonText.text = ""
     }
 
     public void TransactionConfirmed()
@@ -94,22 +109,30 @@ public class UIManager : MonoBehaviour
         StartCoroutine(LoadSceneAsync(0));
     }
 
+    public void GameOverNormalButton_clicked()
+    {
+        gameOverPanel.SetActive(false);
+        transactionPanel.SetActive(true);
+    }
+
+    public void BackToMenuButton_clicked()
+    {
+        GameManager.instance.UpdateGameState(GameState.MainMenu);
+        StartCoroutine(LoadSceneAsync(0));
+    }
+
     public void ConfirmQuitGame_clicked()
     {
         //throw new NotImplementedException();
 
+        GameManager.instance.UpdateGameState(GameState.GameOver);
 
-        if(GameManager.instance.isFreeMode)
+        if (GameManager.instance.isFreeMode)
         {
             //GameManager.instance.UpdateGameState(GameState.GameOver);
-            GameManager.instance.UpdateGameState(GameState.MainMenu);
-            StartCoroutine(LoadSceneAsync(0));
+            /*GameManager.instance.UpdateGameState(GameState.MainMenu);
+            StartCoroutine(LoadSceneAsync(0));*/
         }
-        else
-        {
-            GameManager.instance.UpdateGameState(GameState.GameOver);
-        }
-
     }
 
     public void QuitGame_clicked()
@@ -143,8 +166,6 @@ public class UIManager : MonoBehaviour
         {
             pausePanel.SetActive(true);
         }
-        
-
     }
 
     public void MatchEnd()
@@ -154,7 +175,27 @@ public class UIManager : MonoBehaviour
         quitPanel.SetActive(false);
         gameOverlay.visible = false;
         //gameOverOverlay.visible = true;
-        transactionPanel.SetActive(true);
+        gameOverPanel.SetActive(true);
+
+        if(GameManager.instance.GetPot() == 0 || GameManager.instance.isFreeMode)
+        {
+            gameOverFreeButton.SetActive(true);
+            gameOverButton.SetActive(false);
+        }
+
+        else if (GameManager.instance.GetPot() == 0 && !GameManager.instance.isFreeMode)
+        {
+            gameOverFreeButton.SetActive(false);
+            gameOverButton.SetActive(true);         
+        }
+
+        else
+        {
+            finalPotText.text = GameManager.instance.GetPot().ToString();
+            gameOverFreeButton.SetActive(false);
+            gameOverButton.SetActive(true);
+        }
+
     }
 
     public void BossFightStart()
@@ -222,8 +263,6 @@ public class UIManager : MonoBehaviour
         {
             //print("deu ruim");
         }
-        
-
     }
 
     IEnumerator LoadSceneAsync(int sceneNumber)

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MenuManager : MonoBehaviour
 {
@@ -25,6 +26,10 @@ public class MenuManager : MonoBehaviour
     public GameObject newGameMenu;
     public GameObject settingsMenu;
 
+    public GameObject normalGameButton;
+    public GameObject newGameButton;
+    public GameObject connectButton;
+
     public GameObject WPconnectingWalletPanel;
     public GameObject WPconnectWalletPanel;
     public GameObject WPwalletErrorButtons;
@@ -34,8 +39,8 @@ public class MenuManager : MonoBehaviour
     public GameObject MMconnectWalletPanel;
     
     public TMPro.TMP_Text walletHash;
-    
-    public TMPro.TMP_Text coins;
+    public TMPro.TMP_Text tokensAmount;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -81,6 +86,7 @@ public class MenuManager : MonoBehaviour
         WPconnectingWalletPanel.SetActive(false);
         MMconnectedWalletPanel.SetActive(true);
         walletHash.text = GameManager.instance.Wallet;
+        tokensAmount.text = GameManager.instance.GetTokens();
     }
 
     private void Instance_onTryWalletConnection()
@@ -95,6 +101,8 @@ public class MenuManager : MonoBehaviour
     {
         buttonsPanel.SetActive(true);
         newGameMenu.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(newGameButton);
     }
 
     public void CloseSettings()
@@ -107,6 +115,9 @@ public class MenuManager : MonoBehaviour
     {
         buttonsPanel.SetActive(false);
         newGameMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(normalGameButton);
+
     }
 
     public void WalletButton_clicked()
@@ -116,10 +127,6 @@ public class MenuManager : MonoBehaviour
         WPconnectingWalletPanel.SetActive(false);
     }
 
-
-
-
-
     public void CloseWalletButton_clicked()
     {
         walletMenu.SetActive(false);
@@ -127,7 +134,7 @@ public class MenuManager : MonoBehaviour
 
     public void ClosePopUpButton_clicked()
     {
-        noCoinsPopUp.SetActive(true);
+        noCoinsPopUp.SetActive(false);
     }
 
     public void SettingsButton_clicked()
@@ -144,14 +151,14 @@ public class MenuManager : MonoBehaviour
 
     public void StartGameButton_clicked()
     {
-        if (GameManager.instance.GetCoins() <= 0 || GameManager.instance.GetWalletState() == false)
+        if (GameManager.instance.GetTokens() < GameManager.instance.GetTicketValue() || GameManager.instance.GetWalletState() == false)
         {
             NoCoins();
         }
         else
         {
-            GameManager.instance.isFreeMode = true;
-            GameManager.instance.AddCoins(-1);
+            GameManager.instance.isFreeMode = false;
+            GameManager.instance.AddTokens(-GameManager.instance.GetTicketValue());
             //coins.text = "Coins: " + GameManager.instance.GetCoins().ToString();
             StartCoroutine(LoadSceneAsync(1));
         }
@@ -166,7 +173,7 @@ public class MenuManager : MonoBehaviour
 
     public void NoCoins()
     {
-        //noCoinsPopUp.SetActive(true);
+        noCoinsPopUp.SetActive(true);
         Debug.Log("No wallet or coins available");
     }
 

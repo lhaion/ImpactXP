@@ -32,10 +32,20 @@ public class GameEvents : MonoBehaviour
 
     public event Action onWalletConnected;
     public event Action onTryWalletConnection;
+    public event Action onTryTransaction;
     public event Action onWalletError;
     public event Action onTransferSuccessful;
     public event Action onTransferFailed;
 
+    public void TryTransaction()
+    {
+        if (onTryTransaction != null)
+        {
+            onTryTransaction();
+        }
+        Debug.Log("Transaction connecting...");
+
+    }
 
     public void TryWalletConnection()
     {

@@ -48,7 +48,7 @@ public class GameOverMenuManager : MonoBehaviour
 
     private void StartGameButton_clicked()
     {
-        if (GameManager.instance.GetCoins() <= 0)
+        /*if (GameManager.instance.GetTokens() <= 0)
         {
             NoCoins();
         }
@@ -57,7 +57,7 @@ public class GameOverMenuManager : MonoBehaviour
             
             StartCoroutine(LoadSceneAsync(SceneManager.GetActiveScene().buildIndex));
             GameManager.instance.AddCoins(-1);
-        }
+        }*/
     }
 
     private void NoCoins()
