@@ -7,9 +7,9 @@ public class GameOverManager : MonoBehaviour
     [SerializeField] private GameObject spawnManager;
     [SerializeField] private bool isGameOver;
 
-    [SerializeField] private float smoothTime = 0.5f;
+    /*[SerializeField] private float smoothTime = 0.5f;
     [SerializeField] private float velocity = 0.0f;
-    [SerializeField] private float gameTimeScale = 1;
+    [SerializeField] private float gameTimeScale = 1;*/
 
     // Start is called before the first frame update
     void Start()
@@ -19,15 +19,7 @@ public class GameOverManager : MonoBehaviour
 
     private void Update()
     {
-        if (isGameOver && gameTimeScale > 0)
-        {
-            gameTimeScale = Mathf.SmoothDamp(Time.timeScale, 0, ref velocity, smoothTime);
-            
-            if (gameTimeScale < 0.2f)
-                gameTimeScale = 0;
-
-            Time.timeScale = gameTimeScale;
-        }
+        
     }
 
     private void GameOver()
@@ -35,5 +27,7 @@ public class GameOverManager : MonoBehaviour
         //spawnManager.SetActive(false);
         //Time.timeScale = 0;
         isGameOver = true;
+        spawnManager.SetActive(false);
+        //Cursor.lockState = CursorLockMode.Confined;
     }
 }

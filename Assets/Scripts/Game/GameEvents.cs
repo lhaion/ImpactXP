@@ -27,6 +27,75 @@ public class GameEvents : MonoBehaviour
     public event Action onBonusEnd;
     public event Action onBossFightStart;
     public event Action onBossFightEnd;
+    public event Action onPauseGame;
+    public event Action onResumeGame;
+
+    public event Action onWalletConnected;
+    public event Action onTryWalletConnection;
+    public event Action onWalletError;
+    public event Action onTransferSuccessful;
+    public event Action onTransferFailed;
+
+
+    public void TryWalletConnection()
+    {
+        if (onTryWalletConnection != null)
+        {
+            onTryWalletConnection();
+        }
+        Debug.Log("Wallet connecting...");
+
+    }
+    public void WalletConnected()
+    {
+        if(onWalletConnected != null)
+        {
+            onWalletConnected();
+        }
+
+        Debug.Log("Wallet Connected");
+    }
+    public void WalletError()
+    {
+        if (onWalletError != null)
+        {
+            onWalletError();
+        }
+        Debug.Log("Wallet Error");
+
+    }
+
+    public void TransferSuccessful()
+    {
+        if (onTransferSuccessful != null)
+        {
+            onTransferSuccessful();
+        }
+    }
+
+    public void TransferFailed()
+    {
+        if (onTransferFailed != null)
+        {
+            onTransferFailed();
+        }
+    }
+
+    public void PauseGame()
+    {
+        if (onPauseGame != null)
+        {
+            onPauseGame();
+        }
+    }
+
+    public void ResumeGame()
+    {
+        if (onResumeGame != null)
+        {
+            onResumeGame();
+        }
+    }
 
     public void BossFightStart()
     {

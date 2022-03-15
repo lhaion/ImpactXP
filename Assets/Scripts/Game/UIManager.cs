@@ -15,13 +15,21 @@ public class UIManager : MonoBehaviour
     private VisualElement introScreen;
     private VisualElement levelElement;
     private VisualElement bossOverlay;
+    private VisualElement gameOverlay;
+    private VisualElement pauseOverlay;
+    private VisualElement gameOverOverlay;
     private VisualElement bossLifeBarProgress;
+    private VisualElement settingsOverlay;
+
+    private Button resumeGameButton;
+    private Button quitGameButton;
+
     private PlayerManager thisPlayer;
 
 
     void Awake()
     {
-        thisPlayer = GetComponent<PlayerManager>();
+        thisPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
         var root = GetComponent<UIDocument>().rootVisualElement;
 
         scoreText = root.Q<Label>("Score");
@@ -33,7 +41,14 @@ public class UIManager : MonoBehaviour
         introScreen = root.Q<VisualElement>("IntroOverlay");
         levelElement = root.Q<VisualElement>("level-element");
         bossOverlay = root.Q<VisualElement>("BossOverlay");
+        gameOverOverlay = root.Q<VisualElement>("GameOverOverlay");
+        gameOverlay = root.Q<VisualElement>("GameOverlay");
+        pauseOverlay = root.Q<VisualElement>("PauseOverlay");
+        settingsOverlay = root.Q<VisualElement>("SettingsOverlay");
         bossLifeBarProgress = root.Q<VisualElement>("progress");
+
+        resumeGameButton = root.Q<Button>("resumegame-button");
+        quitGameButton = root.Q<Button>("pausetomenu-button");
     }
 
     // Start is called before the first frame update
@@ -44,11 +59,46 @@ public class UIManager : MonoBehaviour
         GameEvents.instance.onUpdatePot += UpdadePot;
         GameEvents.instance.onCountDown += CountDown;
         GameEvents.instance.onMatchStart += MatchStart;
+        GameEvents.instance.onMatchEnd += MatchEnd;
         GameEvents.instance.onWaveStart += WaveStart;
         GameEvents.instance.onBonusStart += BonusStart;
         GameEvents.instance.onBossFightStart += BossFightStart;
+        GameEvents.instance.onPauseGame += PauseGame;
+        GameEvents.instance.onResumeGame += ResumeGame;
+
+        resumeGameButton.clicked += ResumeGame_clicked;
+        quitGameButton.clicked += QuitGame_clicked;
 
         introScreen.visible = true;
+    }
+
+    private void QuitGame_clicked()
+    {
+        //throw new NotImplementedException();
+        GameEvents.instance.MatchEnd();
+
+    }
+
+    private void ResumeGame_clicked()
+    {
+        GameEvents.instance.ResumeGame();
+    }
+
+    private void ResumeGame()
+    {
+        pauseOverlay.visible = false;
+    }
+
+    private void PauseGame()
+    {
+        pauseOverlay.visible = true;
+    }
+
+    private void MatchEnd()
+    {
+        pauseOverlay.visible = false;
+        gameOverlay.visible = false;
+        gameOverOverlay.visible = true;
     }
 
     private void BossFightStart()
@@ -79,7 +129,7 @@ public class UIManager : MonoBehaviour
 
     private void TakeDamage()
     {
-        lifeCounter.RemoveAt(thisPlayer.life - 1);
+        lifeCounter.RemoveAt(Mathf.Clamp(thisPlayer.life - 1, 0, 100));
     }
 
     private void UpdadeScore()

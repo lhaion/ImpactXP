@@ -47,10 +47,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amount: 0.448
+    - _Amount: 0.178
     - _ExpansionFrequency: 1
-    - _Frequency: 0.0228
-    - _GlowAmount: 0.19
+    - _Frequency: 0.0631
+    - _GlowAmount: 0.97
     - _QueueControl: 0
     - _QueueOffset: 0
     - _Seed: 24

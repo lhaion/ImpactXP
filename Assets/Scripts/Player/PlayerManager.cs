@@ -6,7 +6,6 @@ public class PlayerManager : MonoBehaviour
 {
     public float score { get; private set; }
     [SerializeField]public int life { get; [SerializeField]private set; } = 3;
-    [SerializeField]
     // Start is called before the first frame update
     void Start()
     {
@@ -28,15 +27,15 @@ public class PlayerManager : MonoBehaviour
 
         if(life <= 0)
         {
-            
+            GameEvents.instance.MatchEnd();
+            GameManager.instance.UpdateGameState(GameState.GameOver);
             this.gameObject.SetActive(false);
         }
     }
 
     private void OnDisable()
     {
-        GameEvents.instance.MatchEnd();
-        GameManager.instance.UpdateGameState(GameState.GameOver);
+
     }
 
     private void OnDestroy()

@@ -10,19 +10,40 @@ public class GameManager : MonoBehaviour
     public GameState State;
     public Difficulty Difficulty;
     [SerializeField] private float score;
-    [SerializeField] private float pot;
+    [SerializeField] private float pot = 0;
+    [SerializeField] private float coins;
+    public bool isPaused;
+
 
     public static event Action<GameState> OnGameStateChange;
     // Start is called before the first frame update
     void Awake()
     {
-        instance = this;
+        if (instance == null) // If there is no instance already
+        {
+            DontDestroyOnLoad(gameObject); // Keep the GameObject, this component is attached to, across different scenes
+            instance = this;
+        }
+        else if (instance != this) // If there is already an instance and it's not `this` instance
+        {
+            Destroy(gameObject); // Destroy the GameObject, this component is attached to
+        }
     }
 
     void Start()
     {
-        UpdateGameState(GameState.Intro);
+        UpdateGameState(GameState.MainMenu);
         GameEvents.instance.onBonusEnd += AddPot;
+    }
+
+    public void AddCoins(float coinsBrought)
+    {
+        coins += coinsBrought;
+    }
+
+    public float GetCoins()
+    {
+        return coins;
     }
 
     // Update is called once per frame
@@ -55,6 +76,9 @@ public class GameManager : MonoBehaviour
 
         switch (newState)
         {
+            case GameState.MainMenu:
+                HandleMainMenu();
+                break;
             case GameState.Intro:
                 HandleIntro();
                 break;
@@ -78,10 +102,17 @@ public class GameManager : MonoBehaviour
         OnGameStateChange?.Invoke(newState);
     }
 
+    private void HandleMainMenu()
+    {
+        //Debug.Log("MainMenu");
+        Time.timeScale = 1;
+    }
+
     private void HandleIntro()
     {
-        //Debug.Log("Intro");
-        StartCoroutine(Countdown());
+        Debug.Log("Intro");
+        pot = 0;
+        //StartCoroutine(Countdown());
     }
 
     private void HandlePlaying()
@@ -102,18 +133,13 @@ public class GameManager : MonoBehaviour
         GameEvents.instance.BossFightStart();
     }
 
-    private void HandlePause()
-    {
-        //Debug.Log("Pause");
-
-    }
     private void HandleGameOver()
     {
         Debug.Log("GameOver");
-
+        GameEvents.instance.MatchEnd();
     }
 
-    IEnumerator Countdown()
+    /*IEnumerator Countdown()
     {
         int count = 4;
         while (count > 0)
@@ -124,13 +150,14 @@ public class GameManager : MonoBehaviour
         }
 
         UpdateGameState(GameState.Playing);
-    }
+    }*/
 
 
 }
 
 public enum GameState
 {
+    MainMenu,
     Intro,
     Playing,
     BonusRound,

@@ -7,14 +7,14 @@ public class BossManager : MonoBehaviour
     [SerializeField] private float life = 100;
     [SerializeField] private float damageTaken = 1;
     [SerializeField] private GameObject m_VisualEffectObject;
-    [SerializeField] private GameObject m_Player;
+    [SerializeField] private GameObject m_SceneManager;
     [SerializeField] private Renderer objectRenderer;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_Player = GameObject.FindGameObjectWithTag("Player");
-        m_Player.GetComponent<UIManager>().UpdateBossLifeBar(life);
+        m_SceneManager = GameObject.FindGameObjectWithTag("Scene Manager");
+        m_SceneManager.GetComponent<UIManager>().UpdateBossLifeBar(life);
 
         //GameEvents.instance.onBossFightEnd += BossFightEnd;
 
@@ -32,7 +32,7 @@ public class BossManager : MonoBehaviour
         {
             life = Mathf.Clamp(life - damageTaken, 0, 100);
 
-            m_Player.GetComponent<UIManager>().UpdateBossLifeBar(life);
+            m_SceneManager.GetComponent<UIManager>().UpdateBossLifeBar(life);
 
             GameManager.instance.AddScore(10);
             var explosion = Instantiate(m_VisualEffectObject, other.transform.position, Quaternion.identity);
@@ -49,8 +49,8 @@ public class BossManager : MonoBehaviour
 
     private void OnEnable()
     {
-        m_Player = GameObject.FindGameObjectWithTag("Player");
-        m_Player.GetComponent<UIManager>().UpdateBossLifeBar(life);
+        m_SceneManager = GameObject.FindGameObjectWithTag("Scene Manager");
+        m_SceneManager.GetComponent<UIManager>().UpdateBossLifeBar(life);
         StartCoroutine(Dissolve(30, 0.025f));
     }
 
@@ -73,6 +73,7 @@ public class BossManager : MonoBehaviour
 
         if(life == 0)
         {
+            GameManager.instance.UpdateGameState(GameState.GameOver);
             Destroy(this.gameObject);
         }
         else

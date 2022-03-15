@@ -72,4 +72,11 @@ public class EnemyBehaviour : MonoBehaviour
             Destroy(this.gameObject);
         }
     }
+
+    private void OnDisable()
+    {
+        /*var explosion = Instantiate(m_VisualEffectObject, transform.position, Quaternion.identity);
+        Destroy(explosion, 4f);
+        Destroy(this.gameObject);*/
+    }
 }

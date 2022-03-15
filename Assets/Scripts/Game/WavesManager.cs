@@ -5,7 +5,7 @@ using UnityEngine;
 public class WavesManager : MonoBehaviour
 {
     [SerializeField][Range(1, 5)] private int wavesCount = 1;
-    [SerializeField][Range(1, 5)] private int level = 1;
+    [SerializeField][Range(1, 6)] private int level = 1;
     [SerializeField][Range(0, 2)] private float fakeGameSpeed = 1;
     /*[SerializeField] private float matchTime = 0;
     [SerializeField] private float matchMaximumTime = 1500;
@@ -21,7 +21,14 @@ public class WavesManager : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null) // If there is no instance already
+        {
+            instance = this;
+        }
+        else if (instance != this) // If there is already an instance and it's not `this` instance
+        {
+            Destroy(gameObject); // Destroy the GameObject, this component is attached to
+        }
     }
 
     void Start()
@@ -67,6 +74,7 @@ public class WavesManager : MonoBehaviour
     IEnumerator WaveTimer()
     {
         waveTime = 0;
+
 
         while(waveTime < waveMaximumTime)
         {

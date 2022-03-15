@@ -70,7 +70,7 @@ public class PlayerShooting : MonoBehaviour
     public void OnFire()
     {
         //Debug.Log("Shoot");
-        if(Time.time >= shootTimeStamp && this.enabled)
+        if(Time.time >= shootTimeStamp && this.enabled && !GameManager.instance.isPaused)
         {
             Shoot();
             shootTimeStamp = Time.time + fireRateInterval;

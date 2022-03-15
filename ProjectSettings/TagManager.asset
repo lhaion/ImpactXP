@@ -9,6 +9,9 @@ TagManager:
   - Enemy Bullet
   - Boss
   - Damage Explosion
+  - Bonus Cube
+  - Scene Manager
+  - Spawn Manager
   layers:
   - Default
   - TransparentFX

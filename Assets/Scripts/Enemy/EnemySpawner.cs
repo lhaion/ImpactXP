@@ -20,7 +20,14 @@ public class EnemySpawner : MonoBehaviour
 
     private void Awake()
     {
-        instance = this;
+        if (instance == null) // If there is no instance already
+        {
+            instance = this;
+        }
+        else if (instance != this) // If there is already an instance and it's not `this` instance
+        {
+            Destroy(gameObject); // Destroy the GameObject, this component is attached to
+        }
     }
 
     private void Start()
@@ -39,9 +46,9 @@ public class EnemySpawner : MonoBehaviour
     private void RoundStart()
     {
         isRoundEnded = false;
-        effect.SetGradient("Gradient", tunelColor[WavesManager.instance.GetLevel()]);
-        nebulas[0].SetGradient("Color", nebulaColor[WavesManager.instance.GetLevel()]);
-        nebulas[1].SetGradient("Color", nebulaColor[WavesManager.instance.GetLevel()]);
+        effect.SetGradient("Gradient", tunelColor[WavesManager.instance.GetLevel() - 1]);
+        nebulas[0].SetGradient("Color", nebulaColor[WavesManager.instance.GetLevel() - 1]);
+        nebulas[1].SetGradient("Color", nebulaColor[WavesManager.instance.GetLevel() - 1]);
         WaveStart();
     }
 
@@ -84,11 +91,11 @@ public class EnemySpawner : MonoBehaviour
 
     private float GetRandomX
     {
-        get => Random.Range(-4f, 4f);
+        get => Random.Range(-8f, 8f);
     }
 
     private float GetRandomY
     {
-        get => Random.Range(-3f, 3f);
+        get => Random.Range(-8f, 8f);
     }
 }
