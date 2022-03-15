@@ -166,9 +166,10 @@ public class netScript : MonoBehaviour
      }
     
   
-     async public bool login(string email)
+      public bool login(string email)
      {
-         return await Web3Manager.Login("app id", email);
+         return true;
+         // return await Web3Manager.Login("app id", email);
      }
      
 

@@ -11,13 +11,13 @@ public class WalletManager : MonoBehaviour
         StartCoroutine(ConnectWallet());
     }
 
-    private IEnumerator ConnectWallet()
+    async private IEnumerator ConnectWallet()
     {
         GameEvents.instance.TryWalletConnection();
 
         string walletEmail = emailInput.text;
-
-        bool connection = /*Await here*/ false;
+        if ()
+        bool connection = await Web3Manager.Login("", walletEmail);
         float timeout = 30f;
         
         while(!connection || timeout > 0)
