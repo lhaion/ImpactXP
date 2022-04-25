@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1062633689255278582}
   - component: {fileID: 1062633689255278583}
   - component: {fileID: 1062633689255278580}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: ShotVFX
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -127,7 +127,7 @@ GameObject:
   - component: {fileID: 1062633689594832185}
   - component: {fileID: 1062633689594832182}
   - component: {fileID: 6071488094646035525}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: EnemyShot
   m_TagString: Enemy Bullet
   m_Icon: {fileID: 0}
@@ -255,7 +255,7 @@ GameObject:
   - component: {fileID: 3435404521959786223}
   - component: {fileID: 3435404521959786220}
   - component: {fileID: 3435404521959786221}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}

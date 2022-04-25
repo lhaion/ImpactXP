@@ -13,7 +13,7 @@ public class PlayerShooting : MonoBehaviour
     private float shootTimeStamp = 0;
     [SerializeField] private Transform target;
     [SerializeField] private LineRenderer lineRenderer;
-
+    [SerializeField] private GameObject[] aims;
     private void Start()
     {
 
@@ -25,20 +25,19 @@ public class PlayerShooting : MonoBehaviour
         layerMask = ~layerMask;
 
         RaycastHit hit;
-        if (Physics.Raycast(shotOrigin.position, (target.position - shotOrigin.position), out hit, Mathf.Infinity))
+        if (Physics.Raycast(shotOrigin.position, (target.position - shotOrigin.position), out hit, Mathf.Infinity, 1 << 10))
         {
             Debug.DrawRay(shotOrigin.position, (target.position - shotOrigin.position) * hit.distance, Color.yellow);
             Debug.Log(hit.collider);
             if(hit.collider.tag == "Enemy")
             {
-
+                TargetRecoil(false);
             }
         }
         else
         {
             Debug.DrawRay(shotOrigin.position, (target.position - shotOrigin.position) * 1000, Color.white);
-
-            //Debug.Log("Did not Hit");
+            TargetRecoil(true);
         }
 
         DrawLine(shotOrigin.position, target.position);
@@ -69,12 +68,30 @@ public class PlayerShooting : MonoBehaviour
 
     public void OnFire()
     {
-        //Debug.Log("Shoot");
         if(Time.time >= shootTimeStamp && this.enabled && !GameManager.instance.isPaused)
         {
             Shoot();
+            
             shootTimeStamp = Time.time + fireRateInterval;
         }
-        
+    }
+
+    public void TargetRecoil(bool expand)
+    {
+        if (expand)
+        {
+            foreach (GameObject aim in aims)
+            {
+                aim.GetComponent<AimManager>().expand = true;
+            }
+        }
+        else
+        {
+            foreach (GameObject aim in aims)
+            {
+                aim.GetComponent<AimManager>().expand = false;
+            }
+        }
+
     }
 }

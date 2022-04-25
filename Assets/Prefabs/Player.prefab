@@ -1337,8 +1337,9 @@ MonoBehaviour:
   mesh: {fileID: 4797814315015992186}
   aim: {fileID: 0}
   target: {fileID: 0}
-  smoothTime: 0.8
+  smoothTime: 0.4
   sense: 8
+  rotationSpeed: 180
 --- !u!114 &900912732473268756
 MonoBehaviour:
   m_ObjectHideFlags: 0

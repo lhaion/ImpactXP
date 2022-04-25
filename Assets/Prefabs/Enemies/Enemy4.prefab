@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 391145151735433423}
   - component: {fileID: 3657622067479676778}
   - component: {fileID: 1524060202273436576}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Right Wing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -94,7 +94,7 @@ GameObject:
   - component: {fileID: 3183664672795806587}
   - component: {fileID: 1982003521859044574}
   - component: {fileID: 4352037422845636628}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Turret
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -177,7 +177,7 @@ GameObject:
   - component: {fileID: 6905083968379425911}
   - component: {fileID: 7528913419895774162}
   - component: {fileID: 5735586551348326168}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Left Wing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -261,7 +261,7 @@ GameObject:
   - component: {fileID: 8418578180524164675}
   - component: {fileID: 8418578180524164672}
   - component: {fileID: 8418578180524164677}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Enemy4
   m_TagString: Enemy
   m_Icon: {fileID: 0}

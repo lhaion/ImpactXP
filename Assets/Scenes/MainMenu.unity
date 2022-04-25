@@ -5421,7 +5421,7 @@ MonoBehaviour:
   MMconnectedWalletPanel: {fileID: 0}
   MMconnectWalletPanel: {fileID: 0}
   walletHash: {fileID: 0}
-  coins: {fileID: 0}
+  tokensAmount: {fileID: 0}
 --- !u!1 &812734488
 GameObject:
   m_ObjectHideFlags: 0
@@ -6675,7 +6675,7 @@ MonoBehaviour:
   MMconnectedWalletPanel: {fileID: 1722817129}
   MMconnectWalletPanel: {fileID: 1506503412}
   walletHash: {fileID: 508637883}
-  coins: {fileID: 0}
+  tokensAmount: {fileID: 0}
 --- !u!114 &989208791
 MonoBehaviour:
   m_ObjectHideFlags: 0
