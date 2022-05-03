@@ -22,6 +22,8 @@ public class PlayerMovement : MonoBehaviour
     [Range (1, 10)][Min(1)]public float sense = 10f;
     public float rotationSpeed = 180;
 
+    public GameObject playerMesh;
+
 
     Vector3 lastPosition;
     // Start is called before the first frame update
@@ -43,10 +45,56 @@ public class PlayerMovement : MonoBehaviour
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -8, 8), Mathf.Clamp(transform.position.y, -8, 8), transform.position.z);
 
         float xDistance = transform.position.x - target.position.x;
+
+        HandleRotation();
     }
 
     private void FixedUpdate()
     {
+
+    }
+
+    void HandleRotation()
+    {
+        float distanceX = target.position.x - transform.position.x;
+        float distanceY = target.position.y - transform.position.y;
+
+        float desiredRotationX, desiredRotationZ = 0;
+
+        Quaternion desiredRotation;
+
+        if (distanceX > 2f)
+        {
+            desiredRotationZ = -15;
+            Debug.Log("To the right");
+        }
+        else if (distanceX < -2f)
+        {
+            desiredRotationZ = 15;
+            Debug.Log("To the left");
+
+        }
+        else
+        {
+            desiredRotationZ = 0;
+            Debug.Log("To the center");
+        }
+
+        if (distanceY > 2f)
+        {
+            desiredRotationX = -25;
+        }
+        else if (distanceY < -2f)
+        {
+            desiredRotationX = 25;
+        }
+        else
+        {
+            desiredRotationX = 0;
+        }
+
+        desiredRotation = Quaternion.Euler(desiredRotationX, 0, desiredRotationZ);
+        playerMesh.transform.rotation = Quaternion.Lerp(playerMesh.transform.rotation, desiredRotation, Time.deltaTime * 5);
 
     }
 

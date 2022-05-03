@@ -24,7 +24,7 @@ public class EnemyFollowBehaviour : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(target != null && followTimer > 0)
+        if(target != null && followTimer > 0 && transform.position.z > 4f)
         {
             Follow();
         }

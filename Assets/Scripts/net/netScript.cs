@@ -142,8 +142,6 @@ public class netScript : MonoBehaviour
 
     }
 
-
-     
      public IEnumerator MakeTransfer (int value, string wallet) {
          
          Debug.Log("Make transfer called");
@@ -167,7 +165,6 @@ public class netScript : MonoBehaviour
          Debug.Log("Minted");
      }
     
-  
       public bool login(string email)
      {
          return true;

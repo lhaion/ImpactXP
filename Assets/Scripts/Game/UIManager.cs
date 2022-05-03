@@ -162,7 +162,7 @@ public class UIManager : MonoBehaviour
     public void PauseGame()
     {
         //pauseOverlay.visible = true;
-        if(GameManager.instance.State == GameState.Playing)
+        if(GameManager.instance.State == GameState.Playing || GameManager.instance.State == GameState.BossFight)
         {
             pausePanel.SetActive(true);
         }

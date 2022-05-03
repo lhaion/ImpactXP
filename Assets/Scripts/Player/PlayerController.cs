@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 
     public void OnPause()
     {
-        if(GameManager.instance.State == GameState.Playing)
+        if(GameManager.instance.State == GameState.Playing || GameManager.instance.State == GameState.BossFight)
         {
             if (!GameManager.instance.isPaused)
                 GameEvents.instance.PauseGame();
