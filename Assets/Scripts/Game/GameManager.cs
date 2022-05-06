@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] private float ticketValue = 600;
     public bool isPaused;
     public bool isFreeMode;
-    [SerializeField]private bool isWalletConnected;
+    [SerializeField] private bool isWalletConnected;
 
 
     public static event Action<GameState> OnGameStateChange;
@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     public void SetWallet()
     {
-        
+
         isWalletConnected = true;
     }
 
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
                 break;
 
             default:
-                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);                
+                throw new ArgumentOutOfRangeException(nameof(newState), newState, null);
         }
 
         OnGameStateChange?.Invoke(newState);
@@ -182,8 +182,6 @@ public class GameManager : MonoBehaviour
 
         UpdateGameState(GameState.Playing);
     }*/
-
-
 }
 
 public enum GameState

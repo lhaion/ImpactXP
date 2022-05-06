@@ -5,6 +5,11 @@ using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 
+using UnityEngine.Networking;
+using Newtonsoft.Json;
+
+
+
 public class MenuManager : MonoBehaviour
 {
     /*public Button startGameButton;
@@ -15,12 +20,14 @@ public class MenuManager : MonoBehaviour
     public Button closePopUpButton;
     public Button closeWalletButton;*/
 
-    
+
     public GameObject noCoinsPopUp;
 
     public GameObject titlePanel;
     public GameObject walletPanel;
     public GameObject buttonsPanel;
+
+    public GameObject leaderboardPanel;
 
     public GameObject walletMenu;
     public GameObject newGameMenu;
@@ -37,7 +44,7 @@ public class MenuManager : MonoBehaviour
 
     public GameObject MMconnectedWalletPanel;
     public GameObject MMconnectWalletPanel;
-    
+
     public TMPro.TMP_Text walletHash;
     public TMPro.TMP_Text tokensAmount;
 
@@ -183,11 +190,34 @@ public class MenuManager : MonoBehaviour
     {
         AsyncOperation isLoaded = SceneManager.LoadSceneAsync(sceneNumber);
 
-        while(!isLoaded.isDone)
+        while (!isLoaded.isDone)
         {
             yield return null;
         }
 
         Debug.Log("Scene Loaded");
     }
+
+    public void LeaderboardButton_clicked()
+    {
+        buttonsPanel.SetActive(false);
+        leaderboardPanel.SetActive(true);
+
+        StartCoroutine(GetTopScores());
+    }
+
+    IEnumerator GetTopScores()
+    {
+        const string getScoreUrl = "https://us-central1-impactxp-dac50.cloudfunctions.net/getTopScores";
+        //const string getScoreUrl = "http://127.0.0.1:5001/impactxp-dac50/us-central1/getTopScores";
+
+
+        var uwr = new UnityWebRequest(getScoreUrl, "Get");
+        uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
+
+        yield return uwr.SendWebRequest();
+    }
+
+
+
 }
