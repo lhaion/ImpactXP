@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 public class AimManager : MonoBehaviour
 {
@@ -8,11 +9,13 @@ public class AimManager : MonoBehaviour
     Vector3 velocity = Vector3.zero;
     public bool expand;
     [Range (0.1f, 2f)] public float smoothTime = 1f;
-    Renderer aimRenderer;
+    [SerializeField] SpriteRenderer aimRenderer;
+    [FormerlySerializedAs("onTargetColor")] public Color targetColor;
+    public Color offTargetColor;
 
     private void Start()
     {
-        aimRenderer = GetComponent<Renderer>();
+        aimRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void Update()
@@ -30,13 +33,13 @@ public class AimManager : MonoBehaviour
     public void Expand()
     {
         transform.localPosition = Vector3.SmoothDamp(transform.localPosition, finalPosition, ref velocity, smoothTime);
-        aimRenderer.material.color = Color.white;
+        aimRenderer.color = offTargetColor;
 
     }
 
     public void Compress()
     {
-        transform.localPosition = startPosition;
-        aimRenderer.material.color = Color.red;
+        transform.localPosition = Vector3.SmoothDamp(transform.localPosition, startPosition, ref velocity, smoothTime / 2);
+        aimRenderer.color = targetColor;
     }
 }

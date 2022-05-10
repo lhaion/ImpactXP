@@ -64,7 +64,7 @@ MonoBehaviour:
     overrideMaterial: {fileID: 0}
     overrideMaterialPassIndex: 0
     overrideDepthState: 0
-    depthCompareFunction: 4
+    depthCompareFunction: 8
     enableWrite: 1
     stencilSettings:
       overrideStencilState: 0

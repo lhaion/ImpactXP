@@ -15,7 +15,7 @@ public class GameOverMenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        var root = GetComponent<UIDocument>().rootVisualElement;
+        /*var root = GetComponent<UIDocument>().rootVisualElement;
 
         playAgainButton = root.Q<Button>("playagain-button");
         backToMenuButton = root.Q<Button>("backtomenu-button");
@@ -23,7 +23,7 @@ public class GameOverMenuManager : MonoBehaviour
         finalPot = root.Q<Label>("finalpot-label");
 
         playAgainButton.clicked += StartGameButton_clicked;
-        backToMenuButton.clicked += QuitGameButton_clicked;
+        backToMenuButton.clicked += QuitGameButton_clicked;*/
 
         GameEvents.instance.onMatchEnd += UpdateFinalPot;
 
@@ -74,7 +74,7 @@ public class GameOverMenuManager : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("Scene Loaded");
+        //Debug.Log("Scene Loaded");
 
     }
 }

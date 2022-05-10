@@ -12,36 +12,43 @@ public class PlayerShooting : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     private float shootTimeStamp = 0;
     [SerializeField] private Transform target;
+    [SerializeField] private Transform acquiredTarget;
     [SerializeField] private LineRenderer lineRenderer;
     [SerializeField] private GameObject[] aims;
+    private Camera mainCamera;
+    public Vector3 screenPosition;
+    public Vector3 desiredAimPosition;
     private void Start()
     {
-
+        mainCamera = Camera.main;
     }
 
     private void FixedUpdate()
     {
-        int layerMask = 1 << 8;
-        layerMask = ~layerMask;
+        AcquireTarget();
+    }
 
-        RaycastHit hit;
-        if (Physics.Raycast(shotOrigin.position, (target.position - shotOrigin.position), out hit, Mathf.Infinity, 1 << 10))
+    void AcquireTarget()
+    {
+        screenPosition = mainCamera.WorldToScreenPoint(target.position);
+        desiredAimPosition = mainCamera.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, mainCamera.nearClipPlane));
+        CalculateTarget(desiredAimPosition);
+    }
+
+    void CalculateTarget(Vector3 aimPosition)
+    {
+        Vector3 direction = target.position - aimPosition;
+
+        if (Physics.Raycast(desiredAimPosition, direction, out var hit, 300, 1 << 10))
         {
-            Debug.DrawRay(shotOrigin.position, (target.position - shotOrigin.position) * hit.distance, Color.yellow);
-            //Debug.Log(hit.collider);
-            if(hit.collider.tag == "Enemy")
-            {
-                TargetRecoil(false);
-            }
+            //Debug.Log($"Did hit {hit.collider}");
+            acquiredTarget = hit.collider.gameObject.transform;
+            TargetRecoil(true);
         }
         else
         {
-            Debug.DrawRay(shotOrigin.position, (target.position - shotOrigin.position) * 1000, Color.white);
-            TargetRecoil(true);
+            TargetRecoil(false);
         }
-
-        DrawLine(shotOrigin.position, target.position);
-
     }
 
     void DrawLine(Vector3 start, Vector3 end)
@@ -51,12 +58,17 @@ public class PlayerShooting : MonoBehaviour
     }
     void Shoot()
     {
-        Vector3 lookAtPos = target.position - shotOrigin.position;
-        Quaternion newRotation = Quaternion.LookRotation(lookAtPos, Vector3.up);
-
-        var newShot = Instantiate(shotPrefab, shotOrigin.position, newRotation);
+        Vector3 position = shotOrigin.position;
+        Quaternion newRotation = new Quaternion(0,0,0,0);
+        if (acquiredTarget)
+        {
+            Vector3 lookAtPos = acquiredTarget.position - position;
+            newRotation = Quaternion.LookRotation(lookAtPos, Vector3.up);
+        }
+        
+        var newShot = Instantiate(shotPrefab, position, newRotation);
         newShot.GetComponent<Rigidbody>().velocity = newShot.transform.forward * shotSpeed;
-        Destroy(newShot, 4f);
+        Destroy(newShot, 1.5f);
         ManageAudio();
     }
 

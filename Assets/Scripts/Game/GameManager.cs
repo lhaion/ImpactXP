@@ -37,6 +37,13 @@ public class GameManager : MonoBehaviour
         UpdateGameState(GameState.MainMenu);
         GameEvents.instance.onWalletConnected += SetWallet;
         GameEvents.instance.onBonusEnd += AddPot;
+        
+        Debug.Log(Screen.width);
+
+        if (Screen.width > 1920)
+        {
+            Screen.SetResolution(1920,1080, true);
+        }
     }
 
     public void SetWallet()

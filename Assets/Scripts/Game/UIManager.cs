@@ -225,6 +225,7 @@ public class UIManager : MonoBehaviour
     public void WaveStart()
     {
         levelCounter.text = WavesManager.instance.GetLevel().ToString() + "-" + WavesManager.instance.GetWave().ToString();
+        introScreen.SetActive(false);
     }
 
     public void BonusStart()
@@ -234,7 +235,7 @@ public class UIManager : MonoBehaviour
 
     public void TakeDamage()
     {
-        lifeCounter.transform.GetChild(Mathf.Clamp(thisPlayer.life - 1, 0, 100)).gameObject.SetActive(false);
+        lifeCounter.transform.GetChild(thisPlayer.life).gameObject.SetActive(false);
     }
 
     public void UpdadeScore()
@@ -267,10 +268,7 @@ public class UIManager : MonoBehaviour
             if (number <= 0)
                 countdownText.text = "Go!";
         }
-        else
-        {
-            //print("deu ruim");
-        }
+
     }
 
     IEnumerator LoadSceneAsync(int sceneNumber)

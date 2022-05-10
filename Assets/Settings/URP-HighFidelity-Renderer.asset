@@ -143,7 +143,7 @@ MonoBehaviour:
         serializedVersion: 2
         m_Bits: 2048
       PassNames: []
-    overrideMaterial: {fileID: 2100000, guid: 23f483f15687e0647b90211522dfed80, type: 2}
+    overrideMaterial: {fileID: 2100000, guid: 58a050797a95de149a2dd8d99264c604, type: 2}
     overrideMaterialPassIndex: 0
     overrideDepthState: 1
     depthCompareFunction: 8
