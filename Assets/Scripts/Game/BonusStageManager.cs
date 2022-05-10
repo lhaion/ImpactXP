@@ -1,36 +1,38 @@
-using UnityEngine;
 using System.Collections;
-using UnityEngine.UIElements;
+using UnityEngine;
 
-public class BonusStageManager : MonoBehaviour
+namespace Game
 {
-    [SerializeField] private GameObject boss;
+    public class BonusStageManager : MonoBehaviour
+    {
+        [SerializeField] private GameObject boss;
     
 
-    private void Start()
-    {
-        GameEvents.instance.onBossFightStart += BossFightStart;
-
-        GameManager.instance.UpdateGameState(GameState.Intro);
-        StartCoroutine(Countdown());
-    }
-
-    private void BossFightStart()
-    {
-        boss.SetActive(true);
-    }
-
-    IEnumerator Countdown()
-    {
-        int count = 4;
-        while (count > 0)
+        private void Start()
         {
-            yield return new WaitForSeconds(1f);
-            count--;
-            GameEvents.instance.CountDown();
+            GameEvents.instance.onBossFightStart += BossFightStart;
+
+            GameManager.instance.UpdateGameState(GameState.Intro);
+            StartCoroutine(Countdown());
         }
 
-        GameManager.instance.UpdateGameState(GameState.Playing);
-    }
+        private void BossFightStart()
+        {
+            boss.SetActive(true);
+        }
 
+        IEnumerator Countdown()
+        {
+            int count = 4;
+            while (count > 0)
+            {
+                yield return new WaitForSeconds(1f);
+                count--;
+                GameEvents.instance.CountDown();
+            }
+
+            GameManager.instance.UpdateGameState(GameState.Playing);
+        }
+
+    }
 }

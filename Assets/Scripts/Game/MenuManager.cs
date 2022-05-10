@@ -44,6 +44,9 @@ public class MenuManager : MonoBehaviour
     public GameObject normalGameButton;
     public GameObject newGameButton;
     public GameObject connectButton;
+    public GameObject closeWalletConnectionButton;
+
+    public GameObject senseSlider;
 
     public GameObject WPconnectingWalletPanel;
     public GameObject WPconnectWalletPanel;
@@ -126,6 +129,8 @@ public class MenuManager : MonoBehaviour
     {
         buttonsPanel.SetActive(true);
         settingsMenu.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(newGameButton);
     }
 
     public void NewGameButton_clicked()
@@ -142,11 +147,15 @@ public class MenuManager : MonoBehaviour
         walletMenu.SetActive(true);
         WPconnectWalletPanel.SetActive(true);
         WPconnectingWalletPanel.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(closeWalletConnectionButton);
     }
 
     public void CloseWalletButton_clicked()
     {
         walletMenu.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(newGameButton);
     }
 
     public void ClosePopUpButton_clicked()
@@ -158,6 +167,8 @@ public class MenuManager : MonoBehaviour
     {
         buttonsPanel.SetActive(false);
         settingsMenu.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(senseSlider);
     }
 
     public void QuitGameButton_clicked()

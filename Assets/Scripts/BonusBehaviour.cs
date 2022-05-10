@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class BonusBehaviour : MonoBehaviour
 {
+    
     private float value;
     public void SetValue(float newValue)
     {

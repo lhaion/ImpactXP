@@ -28,7 +28,7 @@ public class PlayerShooting : MonoBehaviour
         if (Physics.Raycast(shotOrigin.position, (target.position - shotOrigin.position), out hit, Mathf.Infinity, 1 << 10))
         {
             Debug.DrawRay(shotOrigin.position, (target.position - shotOrigin.position) * hit.distance, Color.yellow);
-            Debug.Log(hit.collider);
+            //Debug.Log(hit.collider);
             if(hit.collider.tag == "Enemy")
             {
                 TargetRecoil(false);
