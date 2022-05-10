@@ -27,7 +27,15 @@ public class MenuManager : MonoBehaviour
     public GameObject walletPanel;
     public GameObject buttonsPanel;
 
+
+    // Leaderboard stuff
     public GameObject leaderboardPanel;
+
+    public GameObject scoreHolder;
+    public GameObject leaderboardScoreUI;
+
+
+
 
     public GameObject walletMenu;
     public GameObject newGameMenu;
@@ -203,20 +211,51 @@ public class MenuManager : MonoBehaviour
         buttonsPanel.SetActive(false);
         leaderboardPanel.SetActive(true);
 
-        StartCoroutine(GetTopScores());
+
+        clearLeaderboard();
+
+        List<GameScore> scores = mockScores();
+
+        for (int i = 0; i < scores.Count; i++)
+        {
+            GameScore score = scores[i];
+
+            GameObject scoreUI = Instantiate(leaderboardScoreUI, scoreHolder.transform);
+            scoreUI.GetComponent<LeaderboardScoreUI>().InitializeScoreUI(score.Wallet, score.Score.ToString());
+            scoreUI.transform.position = new Vector3(scoreUI.transform.position.x, scoreUI.transform.position.y - (55 * i), scoreUI.transform.position.z);
+        }
     }
 
-    IEnumerator GetTopScores()
+    public void CloseLeaderboardButton_clicked()
     {
-        const string getScoreUrl = "https://us-central1-impactxp-dac50.cloudfunctions.net/getTopScores";
-        //const string getScoreUrl = "http://127.0.0.1:5001/impactxp-dac50/us-central1/getTopScores";
-
-
-        var uwr = new UnityWebRequest(getScoreUrl, "Get");
-        uwr.downloadHandler = (DownloadHandler)new DownloadHandlerBuffer();
-
-        yield return uwr.SendWebRequest();
+        leaderboardPanel.SetActive(false);
+        buttonsPanel.SetActive(true);
     }
+
+    public void clearLeaderboard()
+    {
+        foreach (Transform child in scoreHolder.transform)
+        {
+            Destroy(child.gameObject);
+        }
+    }
+
+    List<GameScore> mockScores()
+    {
+        List<GameScore> scores = new List<GameScore>();
+
+        for (int i = 0; i < 10; i++)
+        {
+            scores.Add(new GameScore
+            {
+                Wallet = "KO354OK4T03G4-59I3-039F" + i,
+                Score = i * 100
+            });
+        }
+
+        return scores;
+    }
+
 
 
 
