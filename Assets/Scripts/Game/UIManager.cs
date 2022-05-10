@@ -8,7 +8,7 @@ using UnityEngine.SceneManagement;
 
 public class UIManager : MonoBehaviour
 {
-    private Label scoreText;
+    /*private Label scoreText;
     private Label potText;
     private Label levelCounter;
     private Label countdownLabel;
@@ -24,18 +24,28 @@ public class UIManager : MonoBehaviour
     private VisualElement settingsOverlay;
 
     private Button resumeGameButton;
-    private Button quitGameButton;
+    private Button quitGameButton;*/
+
+    public GameObject introScreen;
+    public GameObject gameOverlay;
 
     public GameObject pausePanel;
     public GameObject quitPanel;
     public GameObject transactionPanel;
     public GameObject gameOverPanel;
+    public GameObject matchOverlay;
+    public GameObject bossOverlay;
+    public GameObject lifeCounter;
 
     public TMPro.TMP_Text transactionText;
     public TMPro.TMP_Text finalPotText;
     public TMPro.TMP_Text finalTokensText;
     public TMPro.TMP_Text transactionButtonText;
     public TMPro.TMP_Text gameOverButtonText;
+    public TMPro.TMP_Text levelCounter;
+    public TMPro.TMP_Text scoreText;
+    public TMPro.TMP_Text potText;
+    public TMPro.TMP_Text countdownText;
     public GameObject transactionButton;
     public GameObject gameOverButton;
     public GameObject gameOverFreeButton;
@@ -44,7 +54,7 @@ public class UIManager : MonoBehaviour
 
     void Awake()
     {
-        thisPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
+        /*thisPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
         var root = GetComponent<UIDocument>().rootVisualElement;
 
         scoreText = root.Q<Label>("Score");
@@ -63,7 +73,7 @@ public class UIManager : MonoBehaviour
         bossLifeBarProgress = root.Q<VisualElement>("progress");
 
         resumeGameButton = root.Q<Button>("resumegame-button");
-        quitGameButton = root.Q<Button>("pausetomenu-button");
+        quitGameButton = root.Q<Button>("pausetomenu-button");*/
     }
 
     // Start is called before the first frame update
@@ -86,7 +96,7 @@ public class UIManager : MonoBehaviour
         /*resumeGameButton.clicked += ResumeGame_clicked;
         quitGameButton.clicked += QuitGame_clicked;*/
 
-        introScreen.visible = true;
+        introScreen.SetActive(true);
     }
 
     public void TransactionFailed()
@@ -162,7 +172,7 @@ public class UIManager : MonoBehaviour
     public void PauseGame()
     {
         //pauseOverlay.visible = true;
-        if(GameManager.instance.State == GameState.Playing || GameManager.instance.State == GameState.BossFight)
+        if(GameManager.instance.State == GameState.Playing || GameManager.instance.State == GameState.BossFight || GameManager.instance.State == GameState.BonusRound)
         {
             pausePanel.SetActive(true);
         }
@@ -170,11 +180,9 @@ public class UIManager : MonoBehaviour
 
     public void MatchEnd()
     {
-        //pauseOverlay.visible = false;
         pausePanel.SetActive(false);
         quitPanel.SetActive(false);
-        gameOverlay.visible = false;
-        //gameOverOverlay.visible = true;
+        gameOverlay.SetActive(false);
         gameOverPanel.SetActive(true);
 
         if(GameManager.instance.GetPot() == 0 || GameManager.instance.isFreeMode)
@@ -200,18 +208,18 @@ public class UIManager : MonoBehaviour
 
     public void BossFightStart()
     {
-        levelElement.visible = false;
-        bossOverlay.visible = true;
+        matchOverlay.SetActive(false);
+        bossOverlay.SetActive(true);
     }
 
     public void UpdateBossLifeBar(float life)
     {
-        bossLifeBarProgress.style.width = Length.Percent(life);
+        //bossLifeBarProgress.style.width = Length.Percent(life);
     }
 
     public void MatchStart()
     {
-        introScreen.visible = false;
+        introScreen.SetActive(true);
     }
 
     public void WaveStart()
@@ -226,7 +234,7 @@ public class UIManager : MonoBehaviour
 
     public void TakeDamage()
     {
-        lifeCounter.RemoveAt(Mathf.Clamp(thisPlayer.life - 1, 0, 100));
+        lifeCounter.transform.GetChild(Mathf.Clamp(thisPlayer.life - 1, 0, 100)).gameObject.SetActive(false);
     }
 
     public void UpdadeScore()
@@ -250,14 +258,14 @@ public class UIManager : MonoBehaviour
     public void CountDown()
     {
         int number;
-        var timer = countdownLabel.text;
-        bool success = int.TryParse(timer, out number);
+        var timer = countdownText;
+        bool success = int.TryParse(timer.text, out number);
         if(success)
         {
             number--;
-            countdownLabel.text = number.ToString();
+            countdownText.text = number.ToString();
             if (number <= 0)
-                countdownLabel.text = "Go!";
+                countdownText.text = "Go!";
         }
         else
         {

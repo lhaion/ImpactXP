@@ -16,6 +16,7 @@ public class WavesManager : MonoBehaviour
     [SerializeField] private float bonusTime = 0;
     [SerializeField] private float bonusMaximumTime = 15;
     [SerializeField][Range(1, 1.20f)] private float bonusMultiplier = 1;
+    [SerializeField] private float intervalBetweenWaves = 5f;
 
     public static WavesManager instance;
 
@@ -84,7 +85,7 @@ public class WavesManager : MonoBehaviour
 
         wavesCount++;
         GameEvents.instance.WaveEnd();
-        VefifyWave();
+        VerifyWave();
     }
 
     private void BonusStart()
@@ -108,24 +109,12 @@ public class WavesManager : MonoBehaviour
         GameManager.instance.UpdateGameState(GameState.Playing);
     }
 
-    public void VefifyWave()
+    private void VerifyWave()
     {
         if(wavesCount % 6 == 0)
         {
             GameEvents.instance.RoundEnd();
-
-            if (level == 5)
-            {
-                GameManager.instance.UpdateGameState(GameState.BossFight);
-                return;
-            }
-            else
-            {
-                GameManager.instance.UpdateGameState(GameState.BonusRound);
-                level++;
-                wavesCount = 1;
-            }
-            
+            StartCoroutine(IntervalRounds());
         }
         else
         {
@@ -133,6 +122,31 @@ public class WavesManager : MonoBehaviour
         }
     }
 
+    private GameState NextState()
+    {
+        if (level == 5)
+        {
+            return GameState.BossFight;
+        }
+        else
+        {
+            level++;
+            wavesCount = 1;
+            return GameState.BonusRound;
+        }
+    }
+
+    private IEnumerator IntervalRounds()
+    {
+        float time = 0;
+        while (time < intervalBetweenWaves)
+        {
+            time++;
+            yield return new WaitForSeconds(1);
+        }
+        
+        GameManager.instance.UpdateGameState(NextState());
+    }
 
 
 }
