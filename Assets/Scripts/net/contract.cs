@@ -23,7 +23,7 @@ namespace impact
             var privateKey = "0x7580e7fb49df1c861f0050fae31c2224c6aba908e116b8da44ee8cd927b990b0";
             var account = new Nethereum.Web3.Accounts.Account(privateKey);
             var web3 = new Web3(account, url);
-            var contractAddress = "";
+            var contractAddress = "0xbdef6823585bffaec6a596b1ec86240adb94f9ff";
             
              /* Deployment 
             var impactDeployment = new ImpactDeployment();
