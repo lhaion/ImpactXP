@@ -44,6 +44,7 @@ public class MenuManager : MonoBehaviour
     public GameObject normalGameButton;
     public GameObject newGameButton;
     public GameObject connectButton;
+    public GameObject noCoinsBackButton;
     public GameObject closeWalletConnectionButton;
 
     public GameObject senseSlider;
@@ -62,30 +63,7 @@ public class MenuManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        /*var root = GetComponent<UIDocument>().rootVisualElement;
-
-        startGameButton = root.Q<Button>("start-button");
-        startGamex2Button = root.Q<Button>("startx2-button");
-        quitGameButton = root.Q<Button>("quit-button");
-        settingsButton = root.Q<Button>("settings-button");
-        walletButton = root.Q<Button>("wallet-button");
-        closePopUpButton = root.Q<Button>("closePopUp-button");
-        closeWalletButton = root.Q<Button>("closeWallet-button");
-
-        noCoinsPopUp = root.Q<VisualElement>("NoCoinsPopUp");
-        walletMenu = root.Q<VisualElement>("WalletMenu");
-
-        startGameButton.clicked += StartGameButton_clicked;
-        quitGameButton.clicked += QuitGameButton_clicked;
-        settingsButton.clicked += SettingsButton_clicked;
-        startGamex2Button.clicked += StartGameButtonx2_clicked;
-        closePopUpButton.clicked += ClosePopUpButton_clicked;
-        closeWalletButton.clicked += CloseWalletButton_clicked;
-        walletButton.clicked += WalletButton_clicked;
-
-        coins = root.Q<Label>("coins");
-
-        coins.text = "Coins: " + GameManager.instance.GetCoins().ToString();*/
+        /*coins.text = "Coins: " + GameManager.instance.GetCoins().ToString();*/
 
         GameEvents.instance.onTryWalletConnection += Instance_onTryWalletConnection;
         GameEvents.instance.onWalletConnected += Instance_onWalletConnected;
@@ -161,6 +139,8 @@ public class MenuManager : MonoBehaviour
     public void ClosePopUpButton_clicked()
     {
         noCoinsPopUp.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(normalGameButton);
     }
 
     public void SettingsButton_clicked()
@@ -203,6 +183,8 @@ public class MenuManager : MonoBehaviour
     {
         noCoinsPopUp.SetActive(true);
         Debug.Log("No wallet or coins available");
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(noCoinsBackButton);
     }
 
     IEnumerator LoadSceneAsync(int sceneNumber)
@@ -214,7 +196,7 @@ public class MenuManager : MonoBehaviour
             yield return null;
         }
 
-        Debug.Log("Scene Loaded");
+        //Debug.Log("Scene Loaded");
     }
 
     public void LeaderboardButton_clicked()
@@ -266,8 +248,4 @@ public class MenuManager : MonoBehaviour
 
         return scores;
     }
-
-
-
-
 }

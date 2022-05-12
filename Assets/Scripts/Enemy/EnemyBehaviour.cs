@@ -56,17 +56,23 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        if(col.gameObject.tag == "Bullet")
+        Debug.Log($"Triggered by {col.gameObject}");
+        
+        if(col.gameObject.CompareTag("Bullet"))
         {
+            GameEvents.instance.EnemyDestroyed();
             GameManager.instance.AddScore(value);
+            
             var explosion = Instantiate(m_VisualEffectObject, col.transform.position, Quaternion.identity);
             Destroy(explosion, 4f);
             Destroy(col.gameObject);
             Destroy(this.gameObject);
         }
-        else if(col.gameObject.tag == "Player")
+        else if(col.gameObject.CompareTag("Player"))
         {
+            GameEvents.instance.EnemyDestroyed();
             GameEvents.instance.TakeDamage();
+            
             var explosion = Instantiate(m_VisualEffectObject, col.transform.position, Quaternion.identity);
             Destroy(explosion, 2f);
             Destroy(this.gameObject);

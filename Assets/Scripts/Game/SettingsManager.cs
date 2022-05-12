@@ -1,48 +1,43 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
-
+using UnityEngine.UI;
+using UnityEngine.Audio;
 
 public class SettingsManager : MonoBehaviour
 {
     public static SettingsManager instance;
+    public AudioMixer musicMixer;
 
-    private VisualElement settingsOverlay;
+    public GameObject senseSlider, musicSlider, sfxSlider;
 
-    private Slider senseSlider;
-    private Slider sfxVolumeSlider;
-    private Slider musicVolumeSlider;
+    public Game.ScriptableSettings settings;
 
-    void Awake()
+    void Start()
     {
-        if (instance == null) // If there is no instance already
-        {
-            DontDestroyOnLoad(gameObject); // Keep the GameObject, this component is attached to, across different scenes
-            instance = this;
-        }
-        else if (instance != this) // If there is already an instance and it's not `this` instance
-        {
-            Destroy(gameObject); // Destroy the GameObject, this component is attached to
-        }
-
-        var root = GetComponent<UIDocument>().rootVisualElement;
-
-        senseSlider = root.Q<Slider>("sense-slider");
-        sfxVolumeSlider = root.Q<Slider>("sfxvolume-slider");
-        musicVolumeSlider = root.Q<Slider>("musicvolume-slider");
-
-        settingsOverlay = root.Q<VisualElement>("SettingsOverlay");
-
+        senseSlider.GetComponent<Slider>().value = settings.sense;
+        SetSense(settings.sense);
+        musicSlider.GetComponent<Slider>().value = settings.musicVolume;
+        SetMusicVolume(settings.musicVolume);
+        sfxSlider.GetComponent<Slider>().value = settings.sfxVolume;
+        SetSfxVolume(settings.sfxVolume);
+        //gameObject.SetActive(false);
     }
 
-    private void Update()
+    public void SetSense(float newSense)
     {
-        if(settingsOverlay.style.visibility.value == Visibility.Visible)
-        {
-            AudioListener.volume = sfxVolumeSlider.value;
-        }
+        settings.sense = newSense;
     }
 
-
+    public void SetMusicVolume(float newVolume)
+    {
+        settings.musicVolume = newVolume;
+        musicMixer.SetFloat("musicVolume", Mathf.Log10(newVolume) * 20);
+    }
+    
+    public void SetSfxVolume(float newVolume)
+    {
+        settings.sfxVolume = newVolume;
+        musicMixer.SetFloat("SfxVolume", Mathf.Log10(newVolume) * 20);
+    }
 }

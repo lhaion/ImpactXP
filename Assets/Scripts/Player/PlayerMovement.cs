@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     private float h, v;
     public Transform mesh;
     private Rigidbody rb;
+    public Game.ScriptableSettings settings;
 
     //Position and movement variables
     public Transform aim;
@@ -19,7 +20,7 @@ public class PlayerMovement : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private Vector2 deltaAmplified, deltaPure;
     private Animator animator;
-    [Range (1, 10)][Min(1)]public float sense = 10f;
+    [Range (1, 10)][Min(1)]public float sense;
     public float rotationSpeed = 180;
 
     public GameObject playerMesh;
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
+        sense = settings.sense * 5;
     }
 
     // Update is called once per frame
@@ -58,7 +60,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void OnLook(InputValue value)
     {
-        deltaAmplified = value.Get<Vector2>() * sense;
+        deltaAmplified = value.Get<Vector2>() * (sense * 5);
         deltaPure = value.Get<Vector2>();
 
         aim.transform.Translate(deltaAmplified.x * Time.deltaTime, deltaAmplified.y * Time.deltaTime, 0);

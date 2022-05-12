@@ -43,11 +43,11 @@ public class PlayerShooting : MonoBehaviour
         {
             //Debug.Log($"Did hit {hit.collider}");
             acquiredTarget = hit.collider.gameObject.transform;
-            TargetRecoil(true);
+            TargetRecoil(false);
         }
         else
         {
-            TargetRecoil(false);
+            TargetRecoil(true);
         }
     }
 

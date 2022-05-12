@@ -36,6 +36,24 @@ public class GameEvents : MonoBehaviour
     public event Action onWalletError;
     public event Action onTransferSuccessful;
     public event Action onTransferFailed;
+    public event Action onEnemyDestroyed;
+    public event Action onCubeDestroyed;
+
+    public void EnemyDestroyed()
+    {
+        if (onEnemyDestroyed != null)
+        {
+            onEnemyDestroyed();
+        }
+    }
+    
+    public void CubeDestroyed()
+    {
+        if (onCubeDestroyed != null)
+        {
+            onCubeDestroyed();
+        }
+    }
 
     public void TryTransaction()
     {
@@ -44,7 +62,6 @@ public class GameEvents : MonoBehaviour
             onTryTransaction();
         }
         Debug.Log("Transaction connecting...");
-
     }
 
     public void TryWalletConnection()

@@ -2,40 +2,25 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
-
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    /*private Label scoreText;
-    private Label potText;
-    private Label levelCounter;
-    private Label countdownLabel;
-
-    private VisualElement lifeCounter;
-    private VisualElement introScreen;
-    private VisualElement levelElement;
-    private VisualElement bossOverlay;
-    private VisualElement gameOverlay;
-    private VisualElement pauseOverlay;
-    private VisualElement gameOverOverlay;
-    private VisualElement bossLifeBarProgress;
-    private VisualElement settingsOverlay;
-
-    private Button resumeGameButton;
-    private Button quitGameButton;*/
-
     public GameObject introScreen;
     public GameObject gameOverlay;
 
     public GameObject pausePanel;
+    public GameObject optionsPanel;
+    public GameObject settingsPanel;
     public GameObject quitPanel;
     public GameObject transactionPanel;
     public GameObject gameOverPanel;
     public GameObject matchOverlay;
     public GameObject bossOverlay;
-    public GameObject lifeCounter;
+    public GameObject[] lifeCounter;
+    public Slider bossLifeBar;
 
     public TMPro.TMP_Text transactionText;
     public TMPro.TMP_Text finalPotText;
@@ -49,31 +34,21 @@ public class UIManager : MonoBehaviour
     public GameObject transactionButton;
     public GameObject gameOverButton;
     public GameObject gameOverFreeButton;
+    public GameObject resumeGameButton;
+    public GameObject settingsButton;
+    public GameObject quitButton;
+    public GameObject cancelQuitButton;
+    public GameObject confirmQuitButton;
+    public GameObject senseSlider;
+    
+    //public UnityEngine.UI.
 
     private PlayerManager thisPlayer;
 
     void Awake()
     {
-        /*thisPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
-        var root = GetComponent<UIDocument>().rootVisualElement;
+        thisPlayer = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerManager>();
 
-        scoreText = root.Q<Label>("Score");
-        potText = root.Q<Label>("potScore-label");
-        countdownLabel = root.Q<Label>("Countdown");
-        levelCounter = root.Q<Label>("levelCounter-label");
-
-        lifeCounter = root.Q<VisualElement>("LifeCounter");
-        introScreen = root.Q<VisualElement>("IntroOverlay");
-        levelElement = root.Q<VisualElement>("level-element");
-        bossOverlay = root.Q<VisualElement>("BossOverlay");
-        gameOverOverlay = root.Q<VisualElement>("GameOverOverlay");
-        gameOverlay = root.Q<VisualElement>("GameOverlay");
-        pauseOverlay = root.Q<VisualElement>("PauseOverlay");
-        settingsOverlay = root.Q<VisualElement>("SettingsOverlay");
-        bossLifeBarProgress = root.Q<VisualElement>("progress");
-
-        resumeGameButton = root.Q<Button>("resumegame-button");
-        quitGameButton = root.Q<Button>("pausetomenu-button");*/
     }
 
     // Start is called before the first frame update
@@ -93,10 +68,23 @@ public class UIManager : MonoBehaviour
         GameEvents.instance.onTransferSuccessful += TransactionConfirmed;
         GameEvents.instance.onTransferFailed += TransactionFailed;
 
-        /*resumeGameButton.clicked += ResumeGame_clicked;
-        quitGameButton.clicked += QuitGame_clicked;*/
-
         introScreen.SetActive(true);
+    }
+
+    public void SettingsButtonClicked()
+    {
+        optionsPanel.SetActive(false);
+        settingsPanel.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(senseSlider);
+    }
+
+    public void CloseSettingsButtonClicked()
+    {
+        optionsPanel.SetActive(true);
+        settingsPanel.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(settingsButton);
     }
 
     public void TransactionFailed()
@@ -104,12 +92,16 @@ public class UIManager : MonoBehaviour
         transactionText.text = "Transaction Failed";
         transactionButton.SetActive(true);
         //transactionButtonText.text = ""
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(transactionButton);
     }
 
     public void TransactionConfirmed()
     {
         transactionText.text = "Transaction Confirmed";
         transactionButton.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(transactionButton);
     }
 
     public void TransactionButton_clicked()
@@ -123,6 +115,8 @@ public class UIManager : MonoBehaviour
     {
         gameOverPanel.SetActive(false);
         transactionPanel.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(gameOverFreeButton);
     }
 
     public void BackToMenuButton_clicked()
@@ -149,24 +143,30 @@ public class UIManager : MonoBehaviour
     {
         quitPanel.SetActive(true);
         pausePanel.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(cancelQuitButton);
     }
 
     public void KeepPlaying_clicked()
     {
         quitPanel.SetActive(false);
         pausePanel.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(resumeGameButton);
     }
 
     public void ResumeGame_clicked()
     {
         GameEvents.instance.ResumeGame();
     }
+    
 
     public void ResumeGame()
     {
         //pauseOverlay.visible = false;
         pausePanel.SetActive(false);
         quitPanel.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
     }
 
     public void PauseGame()
@@ -175,6 +175,8 @@ public class UIManager : MonoBehaviour
         if(GameManager.instance.State == GameState.Playing || GameManager.instance.State == GameState.BossFight || GameManager.instance.State == GameState.BonusRound)
         {
             pausePanel.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(resumeGameButton);
         }
     }
 
@@ -189,12 +191,16 @@ public class UIManager : MonoBehaviour
         {
             gameOverFreeButton.SetActive(true);
             gameOverButton.SetActive(false);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(gameOverFreeButton);
         }
 
         else if (GameManager.instance.GetPot() == 0 && !GameManager.instance.isFreeMode)
         {
             gameOverFreeButton.SetActive(false);
-            gameOverButton.SetActive(true);         
+            gameOverButton.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(gameOverButton);
         }
 
         else
@@ -202,6 +208,8 @@ public class UIManager : MonoBehaviour
             finalPotText.text = GameManager.instance.GetPot().ToString();
             gameOverFreeButton.SetActive(false);
             gameOverButton.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(gameOverButton);
         }
 
     }
@@ -215,6 +223,7 @@ public class UIManager : MonoBehaviour
     public void UpdateBossLifeBar(float life)
     {
         //bossLifeBarProgress.style.width = Length.Percent(life);
+        bossLifeBar.value = life;
     }
 
     public void MatchStart()
@@ -235,7 +244,9 @@ public class UIManager : MonoBehaviour
 
     public void TakeDamage()
     {
-        lifeCounter.transform.GetChild(thisPlayer.life).gameObject.SetActive(false);
+        Debug.Log(thisPlayer.life);
+        print(thisPlayer.life);
+        lifeCounter[thisPlayer.life - 1].SetActive(false);
     }
 
     public void UpdadeScore()

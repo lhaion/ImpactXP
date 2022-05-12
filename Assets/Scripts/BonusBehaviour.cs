@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BonusBehaviour : MonoBehaviour
 {
-    
+    [SerializeField] private GameObject explosion;
     private float value;
     public void SetValue(float newValue)
     {
@@ -16,6 +16,9 @@ public class BonusBehaviour : MonoBehaviour
         if (other.tag == "Player")
         {
             GameManager.instance.AddScore(value);
+            GameEvents.instance.CubeDestroyed();
+            var newExplosion = Instantiate(explosion, gameObject.transform.position, Quaternion.identity);
+            Destroy(newExplosion, 2f);
             Destroy(this.gameObject);
         }
     }

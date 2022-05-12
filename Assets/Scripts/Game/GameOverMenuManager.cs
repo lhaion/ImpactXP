@@ -1,32 +1,16 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UIElements;
 using UnityEngine.SceneManagement;
-using System;
 
 public class GameOverMenuManager : MonoBehaviour
 {
-    public Button playAgainButton; //GameOverOverlay
-    public Button backToMenuButton;
-
-    private Label finalPot;
+    public TMPro.TMP_Text finalPot;
 
     // Start is called before the first frame update
     void Start()
     {
-        /*var root = GetComponent<UIDocument>().rootVisualElement;
-
-        playAgainButton = root.Q<Button>("playagain-button");
-        backToMenuButton = root.Q<Button>("backtomenu-button");
-
-        finalPot = root.Q<Label>("finalpot-label");
-
-        playAgainButton.clicked += StartGameButton_clicked;
-        backToMenuButton.clicked += QuitGameButton_clicked;*/
-
         GameEvents.instance.onMatchEnd += UpdateFinalPot;
-
     }
 
     private void UpdateFinalPot()

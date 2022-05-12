@@ -717,7 +717,7 @@ MonoBehaviour:
   stripCapacity: 16
   particlePerStripCount: 16
   needsComputeBounds: 0
-  boundsSettingMode: 1
+  boundsMode: 1
   m_Space: 0
 --- !u!114 &8926484042661614779
 MonoBehaviour:
@@ -2937,7 +2937,7 @@ MonoBehaviour:
   stripCapacity: 16
   particlePerStripCount: 16
   needsComputeBounds: 0
-  boundsSettingMode: 1
+  boundsMode: 1
   m_Space: 0
 --- !u!114 &8926484042661614937
 MonoBehaviour:
@@ -8662,7 +8662,7 @@ MonoBehaviour:
   stripCapacity: 16
   particlePerStripCount: 16
   needsComputeBounds: 0
-  boundsSettingMode: 1
+  boundsMode: 1
   m_Space: 0
 --- !u!114 &8926484042661615397
 MonoBehaviour:
@@ -9358,7 +9358,7 @@ MonoBehaviour:
   - {fileID: 8926484042661615734}
   - {fileID: 8926484042661615838}
   - {fileID: 8926484042661615608}
-  m_UIPosition: {x: 3850, y: 3051}
+  m_UIPosition: {x: 3848, y: 3061}
   m_UICollapsed: 0
   m_UISuperCollapsed: 0
   m_InputSlots:
