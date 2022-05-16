@@ -26,17 +26,14 @@ public class MenuManager : MonoBehaviour
     public GameObject titlePanel;
     public GameObject walletPanel;
     public GameObject buttonsPanel;
-
-
+    public GameObject tutorialPanel;
+    
     // Leaderboard stuff
     public GameObject leaderboardPanel;
 
     public GameObject scoreHolder;
     public GameObject leaderboardScoreUI;
-
-
-
-
+    
     public GameObject walletMenu;
     public GameObject newGameMenu;
     public GameObject settingsMenu;
@@ -46,6 +43,11 @@ public class MenuManager : MonoBehaviour
     public GameObject connectButton;
     public GameObject noCoinsBackButton;
     public GameObject closeWalletConnectionButton;
+    public GameObject closeTutorialButton;
+    public GameObject tutorialButton;
+    public GameObject leaderboardButton;
+    public GameObject closeLeaderboardButton;
+    
 
     public GameObject senseSlider;
 
@@ -93,6 +95,20 @@ public class MenuManager : MonoBehaviour
         WPconnectingWalletPanel.SetActive(true);
         WPwalletErrorText.text = "TRYING CONNECTION";
 
+    }
+
+    public void OpenTutorial()
+    {
+        tutorialPanel.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(closeTutorialButton);
+    }
+    
+    public void CloseTutorial()
+    {
+        tutorialPanel.SetActive(false);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(tutorialButton);
     }
 
     public void CloseNewGame()
@@ -203,7 +219,8 @@ public class MenuManager : MonoBehaviour
     {
         buttonsPanel.SetActive(false);
         leaderboardPanel.SetActive(true);
-
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(closeLeaderboardButton);
 
         clearLeaderboard();
 
@@ -223,6 +240,8 @@ public class MenuManager : MonoBehaviour
     {
         leaderboardPanel.SetActive(false);
         buttonsPanel.SetActive(true);
+        EventSystem.current.SetSelectedGameObject(null);
+        EventSystem.current.SetSelectedGameObject(leaderboardButton);
     }
 
     public void clearLeaderboard()

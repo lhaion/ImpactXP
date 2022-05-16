@@ -8,6 +8,7 @@ public class BossShooter : MonoBehaviour
     [SerializeField] private GameObject shotPrefab;
     [SerializeField] private Transform[] shotOrigin;
     [SerializeField] private AudioClip[] shotAudioClip;
+    [SerializeField] private AudioClip spawnClip;
     [SerializeField] private float shotSpeed = 10;
     [SerializeField] private float shootInterval = 1;
     
@@ -17,6 +18,8 @@ public class BossShooter : MonoBehaviour
     {
         audioSource = GetComponent<AudioSource>();
         InvokeRepeating("Shoot", 1f, shootInterval);
+
+        
     }
 
     private void Shoot()

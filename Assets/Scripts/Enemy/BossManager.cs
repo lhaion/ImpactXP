@@ -10,6 +10,7 @@ public class BossManager : MonoBehaviour
     [SerializeField] private GameObject m_SceneManager;
     [SerializeField] private Renderer objectRenderer;
 
+    [SerializeField] private AudioClip spawnClip;
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +18,8 @@ public class BossManager : MonoBehaviour
         m_SceneManager.GetComponent<UIManager>().UpdateBossLifeBar(life);
 
         //GameEvents.instance.onBossFightEnd += BossFightEnd;
+        
+        GetComponent<AudioSource>().PlayOneShot(spawnClip);
 
     }
 

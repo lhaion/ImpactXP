@@ -244,8 +244,6 @@ public class UIManager : MonoBehaviour
 
     public void TakeDamage()
     {
-        Debug.Log(thisPlayer.life);
-        print(thisPlayer.life);
         lifeCounter[thisPlayer.life - 1].SetActive(false);
     }
 

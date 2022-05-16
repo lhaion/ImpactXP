@@ -56,7 +56,7 @@ public class EnemyBehaviour : MonoBehaviour
 
     private void OnTriggerEnter(Collider col)
     {
-        Debug.Log($"Triggered by {col.gameObject}");
+        //Debug.Log($"Triggered by {col.gameObject}");
         
         if(col.gameObject.CompareTag("Bullet"))
         {

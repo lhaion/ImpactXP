@@ -31,7 +31,7 @@ public class PlayerShooting : MonoBehaviour
     void AcquireTarget()
     {
         screenPosition = mainCamera.WorldToScreenPoint(target.position);
-        desiredAimPosition = mainCamera.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, mainCamera.nearClipPlane));
+        desiredAimPosition = mainCamera.ScreenToWorldPoint(new Vector3(screenPosition.x, screenPosition.y, shotOrigin.position.z));
         CalculateTarget(desiredAimPosition);
     }
 
