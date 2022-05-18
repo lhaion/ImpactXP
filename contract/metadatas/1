@@ -1,0 +1,12 @@
+{
+  "name": "Phernis",
+  "description": "This NFT gives the owner access to Impact XP: Galaxy beta and seasonal competition.",
+  "attributes": [
+    {
+      "trait_type": "Name",
+      "value": "Phernis"
+    }
+  ],
+  "WebSite": "https://impactxp.io/",
+  "image": "ipfs://QmYUwvzqjzvQUCCs7GnqB9EiWrhEBDLtPBJGNQ8ksfYELe"
+}

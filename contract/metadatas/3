@@ -1,0 +1,12 @@
+{
+  "name": "Volcyon",
+  "description": "This NFT gives the owner access to Impact XP: Galaxy beta and seasonal competition.",
+  "attributes": [
+    {
+      "trait_type": "Name",
+      "value": "Volcyon"
+    }
+  ],
+  "WebSite": "https://impactxp.io/",
+  "image": "ipfs://QmVWxednsP9s5PvYKEJGyq1GRGYGMnv6HiFm6pNCY1akgE"
+}
