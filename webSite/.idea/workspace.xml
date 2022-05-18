@@ -1,46 +1,56 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="8b4ae9bf-720d-4b71-b37a-341445f79b7e" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/contract.sol" beforeDir="false" afterPath="$PROJECT_DIR$/contract.sol" afterDir="false" />
+    <list default="true" id="52ce5121-e88e-4502-94fa-e1ccbe22b564" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/../contract/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../contract/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../contract/contract.sol" beforeDir="false" afterPath="$PROJECT_DIR$/../contract/contract.sol" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="JavaScript File" />
+        <option value="HTML File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
   </component>
-  <component name="ProjectId" id="29JnfC7RwQeLj7UnU5rJq2E0xDq" />
+  <component name="ProjectId" id="29LDwVkLtemMEAlbP6HLV7e0Pkr" />
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/metadatas" />
+    <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="ts.external.directory.path" value="C:\Users\Rovaris\Documents\GitHub\a\ImpactXP\webSite\landing-page-code\node_modules\typescript\lib" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Rovaris\Documents\GitHub\a\ImpactXP\contract\metadatas" />
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\Rovaris\Documents\GitHub\a\ImpactXP\webSite" />
     </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
-      <changelist id="8b4ae9bf-720d-4b71-b37a-341445f79b7e" name="Changes" comment="" />
-      <created>1652840159595</created>
+      <changelist id="52ce5121-e88e-4502-94fa-e1ccbe22b564" name="Changes" comment="" />
+      <created>1652883710955</created>
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
-      <updated>1652840159595</updated>
-      <workItem from="1652840163369" duration="3387000" />
-      <workItem from="1652879856456" duration="1082000" />
+      <updated>1652883710955</updated>
+      <workItem from="1652883713211" duration="5340000" />
     </task>
     <servers />
   </component>

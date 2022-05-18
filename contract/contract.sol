@@ -1362,9 +1362,11 @@ contract ImpactXP is ERC721, Ownable {
 
     function mintAllowList(uint8 tokenID) external payable {
         require(isAllowListActive, "Allow list is not active");
-        require(supplyAvailabeByName[TokenNameId[tokenID]]<= 0, "NFT SOLD OUT");
+        require(supplyAvailabeByName[TokenNameId[tokenID]] >  0, "NFT SOLD OUT");
         require(PRICE_PER_TOKEN <= msg.value, "Ether value sent is not correct");
+
         require(exists(msg.sender), "Address not in the whitelist");
+
         require(tokenID < 5, "There's only 5 tokens available pick one from 0 to 4");
 
 
