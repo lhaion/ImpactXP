@@ -974,7 +974,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 61.5}
-  m_SizeDelta: {x: 479.0823, y: 50}
+  m_SizeDelta: {x: 630.7799, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &174519661
 MonoBehaviour:
@@ -996,10 +996,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: TRANSACTION NOT ALOWED
+  m_text: TRANSACTION NOT ALLOWED
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eeb1eebe3615a274ba8978051fef9808, type: 2}
-  m_sharedMaterial: {fileID: 7909906148596124668, guid: 89de3ad50a1d1ca4eaee0ab0ce1d8726,
+  m_sharedMaterial: {fileID: -1556589166284440948, guid: eeb1eebe3615a274ba8978051fef9808,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -1063,7 +1063,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &174519662
@@ -4166,7 +4166,7 @@ GameObject:
   - component: {fileID: 865347911}
   - component: {fileID: 865347910}
   m_Layer: 5
-  m_Name: Image
+  m_Name: IMG_Token
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4212,7 +4212,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: b4c174e03c2e0094b9e379f5de8f13b0, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 7434dc9698b4ede4fb26028aa7553eda, type: 3}
   m_Type: 0
   m_PreserveAspect: 1
   m_FillCenter: 1
@@ -6143,10 +6143,10 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: ok
+  m_text: OK
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eeb1eebe3615a274ba8978051fef9808, type: 2}
-  m_sharedMaterial: {fileID: 7909906148596124668, guid: 89de3ad50a1d1ca4eaee0ab0ce1d8726,
+  m_sharedMaterial: {fileID: -1556589166284440948, guid: eeb1eebe3615a274ba8978051fef9808,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -7634,7 +7634,7 @@ MonoBehaviour:
     YOUR WALLET OR BUY MORE TOKENS TO PLAY.
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: eeb1eebe3615a274ba8978051fef9808, type: 2}
-  m_sharedMaterial: {fileID: 7909906148596124668, guid: 89de3ad50a1d1ca4eaee0ab0ce1d8726,
+  m_sharedMaterial: {fileID: -1556589166284440948, guid: eeb1eebe3615a274ba8978051fef9808,
     type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
@@ -7659,8 +7659,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 28
-  m_fontSizeBase: 28
+  m_fontSize: 24
+  m_fontSizeBase: 24
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -7698,7 +7698,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
-  m_hasFontAssetChanged: 1
+  m_hasFontAssetChanged: 0
   m_baseMaterial: {fileID: 0}
   m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
 --- !u!222 &1260373350
@@ -9213,7 +9213,7 @@ GameObject:
   - component: {fileID: 1490563423}
   - component: {fileID: 1490563422}
   m_Layer: 5
-  m_Name: Image
+  m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -12432,7 +12432,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: -75.3}
+  m_AnchoredPosition: {x: 0, y: -92}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1944850732

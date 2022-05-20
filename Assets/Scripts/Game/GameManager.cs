@@ -107,6 +107,9 @@ public class GameManager : MonoBehaviour
             case GameState.Intro:
                 HandleIntro();
                 break;
+            case GameState.Loading:
+                HandleLoading();
+                break;
             case GameState.Playing:
                 HandlePlaying();
                 break;
@@ -130,6 +133,11 @@ public class GameManager : MonoBehaviour
         OnGameStateChange?.Invoke(newState);
     }
 
+    private void HandleLoading()
+    {
+        
+    }
+
     private void HandleMainMenu()
     {
         //Debug.Log("MainMenu");
@@ -139,7 +147,7 @@ public class GameManager : MonoBehaviour
 
     private void HandleIntro()
     {
-        Debug.Log("Intro");
+        //Debug.Log("Intro");
         pot = 0;
         score = 0;
         //StartCoroutine(Countdown());
@@ -194,6 +202,7 @@ public class GameManager : MonoBehaviour
 public enum GameState
 {
     MainMenu,
+    Loading,
     Intro,
     Playing,
     BonusRound,

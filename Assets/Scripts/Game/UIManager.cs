@@ -20,6 +20,7 @@ public class UIManager : MonoBehaviour
     public GameObject matchOverlay;
     public GameObject bossOverlay;
     public GameObject[] lifeCounter;
+    public GameObject newWavePanel;
     public Slider bossLifeBar;
 
     public TMPro.TMP_Text transactionText;
@@ -31,6 +32,7 @@ public class UIManager : MonoBehaviour
     public TMPro.TMP_Text scoreText;
     public TMPro.TMP_Text potText;
     public TMPro.TMP_Text countdownText;
+    public TMPro.TMP_Text newWaveText;
     public GameObject transactionButton;
     public GameObject gameOverButton;
     public GameObject gameOverFreeButton;
@@ -235,11 +237,13 @@ public class UIManager : MonoBehaviour
     {
         levelCounter.text = WavesManager.instance.GetLevel().ToString() + "-" + WavesManager.instance.GetWave().ToString();
         introScreen.SetActive(false);
+        StartCoroutine(NewWavePopUp(levelCounter.text));
     }
 
     public void BonusStart()
     {
         levelCounter.text = "BONUS x" + WavesManager.instance.GetMultiplier().ToString();
+        StartCoroutine(NewWavePopUp(levelCounter.text));
     }
 
     public void TakeDamage()
@@ -290,6 +294,19 @@ public class UIManager : MonoBehaviour
         }
 
         Debug.Log("Scene Loaded");
+    }
 
+    IEnumerator NewWavePopUp(string newWave)
+    {
+        newWaveText.text = newWave;
+        newWavePanel.SetActive(true);
+        float timer = 3;
+        while (timer > 0)
+        {
+            yield return new WaitForSeconds(1f);
+            timer--;
+        }
+        
+        newWavePanel.SetActive(false);
     }
 }

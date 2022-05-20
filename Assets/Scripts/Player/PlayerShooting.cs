@@ -60,7 +60,7 @@ public class PlayerShooting : MonoBehaviour
     {
         Vector3 position = shotOrigin.position;
         Quaternion newRotation = new Quaternion(0,0,0,0);
-        if (acquiredTarget)
+        if (acquiredTarget && acquiredTarget.transform.position.z > transform.position.z)
         {
             Vector3 lookAtPos = acquiredTarget.position - position;
             newRotation = Quaternion.LookRotation(lookAtPos, Vector3.up);
