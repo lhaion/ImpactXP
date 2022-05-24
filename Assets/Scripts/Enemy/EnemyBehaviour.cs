@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.VFX;
+using DG.Tweening;
 
 public class EnemyBehaviour : MonoBehaviour
 {
@@ -29,6 +30,9 @@ public class EnemyBehaviour : MonoBehaviour
             meshFilter.mesh = mesh[Mathf.FloorToInt(Random.Range(0, mesh.Length))];
         }
 
+        transform.localScale = new Vector3(0, 0, 0);
+        transform.DOScale(new Vector3(1, 1, 1), 1);
+        
         Destroy(gameObject, 10f);
 
     }

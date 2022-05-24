@@ -2,7 +2,7 @@
 %TAG !u! tag:unity3d.com,2011:
 --- !u!21 &2100000
 Material:
-  serializedVersion: 6
+  serializedVersion: 8
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -10,7 +10,8 @@ Material:
   m_Name: M_VertDisp 2
   m_Shader: {fileID: -6465566751694194690, guid: 96a390e31666aeb46beecbfc45108e1e,
     type: 3}
-  m_ShaderKeywords: 
+  m_ValidKeywords: []
+  m_InvalidKeywords: []
   m_LightmapFlags: 2
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
@@ -34,7 +35,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _Amount: 0
+    - _Amount: 0.387
     - _ExpansionFrequency: 3.46
     - _Frequency: 0.1
     - _GlowAmount: 8.25
@@ -42,8 +43,8 @@ Material:
     - _QueueOffset: 0
     - _Seed: 98473
     m_Colors:
-    - _Color: {r: 0.7882353, g: 0.5257193, b: 0.047058832, a: 1}
-    - _GlowColor: {r: 29.508846, g: 0, b: 0.857974, a: 1}
+    - _Color: {r: 1.39772, g: 0.936692, b: 0.087814875, a: 1}
+    - _GlowColor: {r: 2.6082377, g: 0, b: 0.08193417, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &5518193062673321200
 MonoBehaviour:

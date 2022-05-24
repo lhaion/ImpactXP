@@ -62,8 +62,9 @@ public class PlayerMovement : MonoBehaviour
     {
         deltaAmplified = value.Get<Vector2>() * (sense * 5);
         deltaPure = value.Get<Vector2>();
-
-        aim.transform.Translate(deltaAmplified.x * Time.deltaTime, deltaAmplified.y * Time.deltaTime, 0);
+        
+        if (enabled == true)
+            aim.transform.Translate(deltaAmplified.x * Time.deltaTime, deltaAmplified.y * Time.deltaTime, 0);
     }
 
     public float CalcVelocity()

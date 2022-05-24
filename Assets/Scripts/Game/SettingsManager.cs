@@ -8,6 +8,7 @@ public class SettingsManager : MonoBehaviour
 {
     public static SettingsManager instance;
     public AudioMixer musicMixer;
+    public PlayerMovement playerMovement;
 
     public GameObject senseSlider, musicSlider, sfxSlider;
 
@@ -27,6 +28,8 @@ public class SettingsManager : MonoBehaviour
     public void SetSense(float newSense)
     {
         settings.sense = newSense;
+        if (playerMovement)
+            playerMovement.sense = newSense * 5;
     }
 
     public void SetMusicVolume(float newVolume)

@@ -5,6 +5,7 @@ using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 using DG.Tweening;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
 
 public class PlayerManager : MonoBehaviour
 {
@@ -20,16 +21,21 @@ public class PlayerManager : MonoBehaviour
     {
         GameEvents.instance.onTakeDamage += TakeDamage;
         GameEvents.instance.onMatchStart += MatchStart;
+        GameEvents.instance.onRoundStart += EnableComponents;
 
         volume.profile.TryGet<Vignette>(out vignette);
-        
+    }
 
+    private void EnableComponents()
+    {
+        GetComponent<PlayerMovement>().enabled = true;
+        GetComponent<PlayerShooting>().enabled = true;
     }
 
     private void MatchStart()
     {
-        GetComponent<PlayerMovement>().enabled = true;
-        GetComponent<PlayerShooting>().enabled = true;
+        //GetComponent<PlayerController>().enabled = true;
+        
     }
 
     private void TakeDamage()
@@ -63,6 +69,7 @@ public class PlayerManager : MonoBehaviour
     {
         vignette.intensity.value = intensity;
         Time.timeScale = 1 - intensity;
-        Gamepad.current.SetMotorSpeeds(intensity, intensity);
+        if(Gamepad.all.Count > 0)
+            Gamepad.current.SetMotorSpeeds(intensity, intensity);
     }
 }

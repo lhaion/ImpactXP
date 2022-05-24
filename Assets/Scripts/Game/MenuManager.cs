@@ -39,6 +39,7 @@ public class MenuManager : MonoBehaviour
     public GameObject settingsMenu;
 
     public GameObject normalGameButton;
+    public GameObject freeGameButton;
     public GameObject newGameButton;
     public GameObject connectButton;
     public GameObject noCoinsBackButton;
@@ -181,6 +182,7 @@ public class MenuManager : MonoBehaviour
         }
         else
         {
+            normalGameButton.GetComponent<Button>().interactable = false;
             GameManager.instance.isFreeMode = false;
             GameManager.instance.AddTokens(-GameManager.instance.GetTicketValue());
             //coins.text = "Coins: " + GameManager.instance.GetCoins().ToString();
@@ -191,8 +193,10 @@ public class MenuManager : MonoBehaviour
 
     public void StartGameButtonx2_clicked()
     {
+        freeGameButton.GetComponent<Button>().interactable = false;
         GameManager.instance.isFreeMode = true;
         StartCoroutine(LoadSceneAsync(2));
+        
     }
 
     public void NoCoins()
@@ -232,7 +236,7 @@ public class MenuManager : MonoBehaviour
 
             GameObject scoreUI = Instantiate(leaderboardScoreUI, scoreHolder.transform);
             scoreUI.GetComponent<LeaderboardScoreUI>().InitializeScoreUI(score.Wallet, score.Score.ToString());
-            scoreUI.transform.position = new Vector3(scoreUI.transform.position.x, scoreUI.transform.position.y - (55 * i), scoreUI.transform.position.z);
+            scoreUI.transform.position = new Vector3(scoreUI.transform.position.x, scoreUI.transform.position.y - (30 * i), scoreUI.transform.position.z);
         }
     }
 

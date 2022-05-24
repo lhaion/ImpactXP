@@ -5,6 +5,9 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using DG.Tweening;
+using Unity.VisualScripting;
+using Sequence = DG.Tweening.Sequence;
 
 public class UIManager : MonoBehaviour
 {
@@ -21,6 +24,7 @@ public class UIManager : MonoBehaviour
     public GameObject bossOverlay;
     public GameObject[] lifeCounter;
     public GameObject newWavePanel;
+    public GameObject scoreTextObject;
     public Slider bossLifeBar;
 
     public TMPro.TMP_Text transactionText;
@@ -72,6 +76,8 @@ public class UIManager : MonoBehaviour
 
         introScreen.SetActive(true);
     }
+    
+    
 
     public void SettingsButtonClicked()
     {
@@ -169,6 +175,7 @@ public class UIManager : MonoBehaviour
         pausePanel.SetActive(false);
         quitPanel.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
+        
     }
 
     public void PauseGame()
@@ -254,6 +261,10 @@ public class UIManager : MonoBehaviour
     public void UpdadeScore()
     {
         scoreText.text = GameManager.instance.GetScore().ToString();
+        Sequence scoreFX = DOTween.Sequence();
+        scoreFX.Append(scoreTextObject.transform.DOScale(1.1f, 0.15f));
+        scoreFX.Append(scoreTextObject.transform.DOScale(1, 0.20f));
+
     }
 
     public void UpdadePot()

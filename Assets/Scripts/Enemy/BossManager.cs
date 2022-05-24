@@ -37,7 +37,7 @@ public class BossManager : MonoBehaviour
 
             m_SceneManager.GetComponent<UIManager>().UpdateBossLifeBar(life);
 
-            GameManager.instance.AddScore(10);
+            //GameManager.instance.AddScore(10);
             var explosion = Instantiate(m_VisualEffectObject, other.transform.position, Quaternion.identity);
             Destroy(explosion, 2f);
             Destroy(other.gameObject);
