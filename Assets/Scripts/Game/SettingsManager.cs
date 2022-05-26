@@ -10,7 +10,7 @@ public class SettingsManager : MonoBehaviour
     public AudioMixer musicMixer;
     public PlayerMovement playerMovement;
 
-    public GameObject senseSlider, musicSlider, sfxSlider;
+    public GameObject senseSlider, musicSlider, sfxSlider, delaySlider;
 
     public Game.ScriptableSettings settings;
 
@@ -18,8 +18,13 @@ public class SettingsManager : MonoBehaviour
     {
         senseSlider.GetComponent<Slider>().value = settings.sense;
         SetSense(settings.sense);
+        
+        delaySlider.GetComponent<Slider>().value = settings.moveDelay;
+        SetDelay(settings.moveDelay);
+        
         musicSlider.GetComponent<Slider>().value = settings.musicVolume;
         SetMusicVolume(settings.musicVolume);
+        
         sfxSlider.GetComponent<Slider>().value = settings.sfxVolume;
         SetSfxVolume(settings.sfxVolume);
         //gameObject.SetActive(false);
@@ -30,6 +35,13 @@ public class SettingsManager : MonoBehaviour
         settings.sense = newSense;
         if (playerMovement)
             playerMovement.sense = newSense * 5;
+    }
+    
+    public void SetDelay(float newDelay)
+    {
+        settings.moveDelay = newDelay;
+        if (playerMovement)
+            playerMovement.smoothTime = newDelay;
     }
 
     public void SetMusicVolume(float newVolume)

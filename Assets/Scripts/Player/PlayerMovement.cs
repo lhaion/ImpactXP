@@ -33,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
         sense = settings.sense * 5;
+        smoothTime = settings.moveDelay;
     }
 
     // Update is called once per frame

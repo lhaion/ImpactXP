@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.VFX;
 
 public class BonusSpawner : MonoBehaviour
 {
@@ -10,6 +11,12 @@ public class BonusSpawner : MonoBehaviour
     [SerializeField] private float shotSpeed = 35;
     [SerializeField] private float bonusValue;
 
+    [GradientUsage(true)] public Gradient tunelColor;
+    [GradientUsage(true)] public Gradient nebulaColor;
+    
+    [SerializeField] private VisualEffect effect;
+    [SerializeField] private VisualEffect[] nebulas;
+    
     public static BonusSpawner instance;
 
     private void Awake()
@@ -30,6 +37,11 @@ public class BonusSpawner : MonoBehaviour
 
         isBonusRound = true;
         bonusValue = (GameManager.instance.GetScore() * WavesManager.instance.GetMultiplier()) - GameManager.instance.GetScore();
+        
+        effect.SetGradient("Gradient", tunelColor);
+        nebulas[0].SetGradient("Color", nebulaColor);
+        nebulas[1].SetGradient("Color", nebulaColor);
+        
         StartCoroutine(SpawnCicle());
     }
 
