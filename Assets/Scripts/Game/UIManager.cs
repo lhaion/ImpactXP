@@ -162,7 +162,18 @@ public class UIManager : MonoBehaviour
         EventSystem.current.SetSelectedGameObject(null);
         EventSystem.current.SetSelectedGameObject(resumeGameButton);
     }
-
+    
+    public void PauseGame()
+    {
+        //pauseOverlay.visible = true;
+        if(GameManager.instance.State == GameState.Playing || GameManager.instance.State == GameState.BossFight || GameManager.instance.State == GameState.BonusRound)
+        {
+            pausePanel.SetActive(true);
+            EventSystem.current.SetSelectedGameObject(null);
+            EventSystem.current.SetSelectedGameObject(resumeGameButton);
+        }
+    }
+    
     public void ResumeGame_clicked()
     {
         GameEvents.instance.ResumeGame();
@@ -176,17 +187,6 @@ public class UIManager : MonoBehaviour
         quitPanel.SetActive(false);
         EventSystem.current.SetSelectedGameObject(null);
         
-    }
-
-    public void PauseGame()
-    {
-        //pauseOverlay.visible = true;
-        if(GameManager.instance.State == GameState.Playing || GameManager.instance.State == GameState.BossFight || GameManager.instance.State == GameState.BonusRound)
-        {
-            pausePanel.SetActive(true);
-            EventSystem.current.SetSelectedGameObject(null);
-            EventSystem.current.SetSelectedGameObject(resumeGameButton);
-        }
     }
 
     public void MatchEnd()
@@ -249,7 +249,7 @@ public class UIManager : MonoBehaviour
 
     public void BonusStart()
     {
-        levelCounter.text = "BONUS x" + WavesManager.instance.GetMultiplier().ToString();
+        levelCounter.text = "BONUS x" + Mathf.Ceil(WavesManager.instance.GetMultiplier()).ToString();
         StartCoroutine(NewWavePopUp(levelCounter.text));
     }
 

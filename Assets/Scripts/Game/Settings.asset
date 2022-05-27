@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aa94296c25680934da4f737d5d7300cf, type: 3}
   m_Name: Settings
   m_EditorClassIdentifier: 
-  sense: 2
-  sfxVolume: 0.728
-  musicVolume: 0.712
+  sense: 1
+  moveDelay: 0.6
+  sfxVolume: 0.7
+  musicVolume: 0.7
